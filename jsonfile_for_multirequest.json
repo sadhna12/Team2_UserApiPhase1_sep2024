@@ -1,0 +1,40 @@
+[
+    {
+        "requests": [
+            {
+                "name": "createuser",
+                "data": [
+                    {
+                        "method": "POST",
+                        "user_first_name": "krishtina",
+                        "user_last_name": "giden",
+                        "user_contact_number": "1234567896",
+                        "user_email_id": "krishti.doe@example.com",
+                        "PlotNumber": "101",
+                        "Street": "Main Street",
+                        "state": "CA",
+                        "Country": "USA",
+                        "zipCode": "90001"
+                    }
+                ]
+            },
+            {
+                "name": "UpdateUser_Requset",
+                "data": [
+                    {
+                        "method": "PUT",
+                        "user_first_name": "kiara",
+                        "user_last_name": "singh",
+                        "user_contact_number": "9876543216",
+                        "user_email_id": "Aishwarya_krishtin.doe@example.com",
+                        "PlotNumber": "B-21",
+                        "Street": "Glen erin",
+                        "state": "CA",
+                        "Country": "Canada",
+                        "zipCode": "90001"
+                    }
+                ]
+            }
+        ]
+    }
+]

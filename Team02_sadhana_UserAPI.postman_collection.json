@@ -1,0 +1,4702 @@
+{
+	"info": {
+		"_postman_id": "8143f458-286b-4332-b100-e51bac1bcdd2",
+		"name": "Team02_sadhana_UserAPI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "38321078",
+		"_collection_link": "https://ninjas-0373.postman.co/workspace/Team2_Sadhna_UserApi~786c8115-6035-451a-ad9a-a584188426ae/collection/38321078-8143f458-286b-4332-b100-e51bac1bcdd2?action=share&source=collection_link&creator=38321078"
+	},
+	"item": [
+		{
+			"name": "Positive Scenario",
+			"item": [
+				{
+					"name": "createuser",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is either 200 or 201\", function () {\r",
+									"    var statusCode = pm.response.code;\r",
+									"    pm.expect(statusCode === 200 || statusCode === 201).to.be.true;\r",
+									"});\r",
+									"\r",
+									"// Validate the response JSON schema\r",
+									"pm.test(\"Response should be valid JSON\", function () {\r",
+									"    pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"// // Validate a specific field in the response\r",
+									"// pm.test(\"User first name is correct\", function () {\r",
+									"//     var jsonData = pm.response.json();\r",
+									"//     //pm.expect(jsonData.user_first_name).to.eql(\"Andrea\");\r",
+									"// });\r",
+									"const response=pm.response.json();\r",
+									"//pm.collectionVariables.set('userID',response.user_id);\r",
+									"pm.environment.set(\"User_ID\",response.user_id)\r",
+									"pm.environment.set(\"userFirst_Name\",response.user_first_name)\r",
+									"console.log(\"++++++++++++\",response.user_first_name)\r",
+									"\r",
+									"\r",
+									"const jsondata=pm.response.json();\r",
+									"\r",
+									"pm.test(\"validate data type in response\",()=>\r",
+									"{\r",
+									"    \r",
+									"\r",
+									"    //addressId\r",
+									"   console.log(\"validate data type in response  \",jsondata)\r",
+									"   //pm.expect(jsondata[0].addressId).to.be.a(\"integer\")\r",
+									"   pm.expect(jsondata[0].user_id).to.be.a(\"integer\")\r",
+									"    pm.expect(jsondata[0].user_first_name).to.be.a(\"String\")\r",
+									"    pm.expect(jsondata[0].user_last_name).to.be.a(\"String\")\r",
+									"      pm.expect(jsondata[0].user_contact_number).to.be.a(\"integer\")\r",
+									"      pm.expect(jsondata[0].user_email_id).to.be.a(\"String\")\r",
+									"      pm.expect(jsondata.userAddress[0].plotNumber).to.be.a(\"String\")\r",
+									"       pm.expect(jsondata[0].state).to.be.a(\"String\")\r",
+									"        pm.expect(jsondata[0].country).to.be.a(\"String\")\r",
+									"        pm.expect(jsondata[0].zipCode).to.be.a(\"integer\")\r",
+									"\r",
+									"})\r",
+									"\r",
+									"pm.test(\"Response should be valid JSON\", function () {\r",
+									"    pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"// pm.test(\"Validate response schema\", function() {\r",
+									"//     const responseJson = pm.response.json(); // Get the parsed JSON response\r",
+									"//     const validateSchema = pm.globals.get(\"validateSchema\"); // Retrieve the function\r",
+									"//    console.log(\"-------------------\"+validateSchema)\r",
+									"//     if (typeof validateSchema !== 'function') {\r",
+									"//         throw new Error('validateSchema is not a function');\r",
+									"//     }\r",
+									"\r",
+									"//     validateSchema(responseJson); // Call the function\r",
+									"// });\r",
+									"\r",
+									"// pm.test(\"Validate response schema\", function() {\r",
+									"//     const responseJson = pm.response.json(); // Get the parsed JSON response\r",
+									"//     const validateSchema = pm.environment.get(\"validateSchema\"); // Retrieve the global function\r",
+									"    \r",
+									"//     // Call the validation function with the response\r",
+									"//     validateSchema(responseJson);\r",
+									"// });\r",
+									"\r",
+									"//const responseData = pm.response.json();\r",
+									"var schema=\r",
+									"\r",
+									"{\r",
+									"  \"$schema\": \"http://json-schema.org/draft-04/schema#\",\r",
+									"  \"type\": \"object\",\r",
+									"  \"properties\": {\r",
+									"    \"userAddress\": {\r",
+									"      \"type\": \"object\",\r",
+									"      \"properties\": {\r",
+									"        \"addressId\": {\r",
+									"          \"type\": \"integer\"\r",
+									"        },\r",
+									"        \"plotNumber\": {\r",
+									"          \"type\": \"null\"\r",
+									"        },\r",
+									"        \"street\": {\r",
+									"          \"type\": \"null\"\r",
+									"        },\r",
+									"        \"state\": {\r",
+									"          \"type\": \"string\"\r",
+									"        },\r",
+									"        \"country\": {\r",
+									"          \"type\": \"null\"\r",
+									"        },\r",
+									"        \"zipCode\": {\r",
+									"          \"type\": \"integer\"\r",
+									"        }\r",
+									"      },\r",
+									"      \"required\": [\r",
+									"        \"addressId\",\r",
+									"        \"plotNumber\",\r",
+									"        \"street\",\r",
+									"        \"state\",\r",
+									"        \"country\",\r",
+									"        \"zipCode\"\r",
+									"      ]\r",
+									"    },\r",
+									"    \"user_id\": {\r",
+									"      \"type\": \"integer\"\r",
+									"    },\r",
+									"    \"user_first_name\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"user_last_name\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"user_contact_number\": {\r",
+									"      \"type\": \"integer\"\r",
+									"    },\r",
+									"    \"user_email_id\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"creation_time\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"last_mod_time\": {\r",
+									"      \"type\": \"string\"\r",
+									"    }\r",
+									"  },\r",
+									"  \"required\": [\r",
+									"    \"userAddress\",\r",
+									"    \"user_id\",\r",
+									"    \"user_first_name\",\r",
+									"    \"user_last_name\",\r",
+									"    \"user_contact_number\",\r",
+									"    \"user_email_id\",\r",
+									"    \"creation_time\",\r",
+									"    \"last_mod_time\"\r",
+									"  ]\r",
+									"}\r",
+									"    \r",
+									"\r",
+									"// const Ajv = require('ajv');\r",
+									"// const ajv = new Ajv();\r",
+									"// Schema validation\r",
+									"pm.test(\"Schema validation\", function () {\r",
+									"   \r",
+									"    pm.expect(tv4.validate(jsondata,schema)).to.be.true; // Check if valid\r",
+									"});\r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									"//PostmanLegacy.setNextRequest(\"deleteUserByName\")"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"// if (pm.iterationData.get(\"method\") === \"PUT\") {\r",
+									"//     pm.request.method = 'PUT';\r",
+									"// } else {\r",
+									"//     pm.request.method = 'POST';\r",
+									"// }\r",
+									"function generatePhoneNumber() {\r",
+									"    const areaCode = Math.floor(100 + Math.random() * 900); // Random area code (100-999)\r",
+									"    const prefix = Math.floor(100 + Math.random() * 900);   // Random prefix (100-999)\r",
+									"    const lineNumber = Math.floor(1000 + Math.random() * 9000); // Random line number (1000-9999)\r",
+									"    return `(${areaCode})${prefix}-${lineNumber}`;\r",
+									"}\r",
+									"\r",
+									"// Store the generated phone number in an environment variable\r",
+									"//pm.environment.set(\"uniquePhoneNumber\", generatePhoneNumber());"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "userapi@nn",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "Numpy@gmail.com",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user_first_name\": \"{{user_first_name}}\",\r\n    \"user_last_name\": \"{{user_last_name}}\",\r\n    \"user_contact_number\": \"{{user_contact_number}}\",\r\n    \"user_email_id\": \"{{user_email_id}}\",\r\n    \"userAddress\": {\r\n      \"PlotNumber\": \"{{PlotNumber}}\",\r\n      \"Street\": \"{{Street}}\",\r\n      \"state\": \"{{state}}\",\r\n      \"Country\": \"{{Country}}\",\r\n      \"zipCode\": \"{{zipCode}}\"\r\n    }\r\n  }\r\n\r\n// {\r\n//     \"user_first_name\": \"jow\",\r\n//     \"user_last_name\": \"Doe\",\r\n//     \"user_contact_number\": \"1034569890\",\r\n//     \"user_email_id\": \"jon.do@example.com\",\r\n//     \"userAddress\": {\r\n//       \"PlotNumber\": \"101\",\r\n//       \"Street\": \"Main Street\",\r\n//       \"state\": \"CA\",\r\n//       \"Country\": \"USA\",\r\n//       \"zipCode\": \"90001\"\r\n//     }\r\n//   }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/createusers",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"createusers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateUser_Requset",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"const getvar=pm.environment.get(\"User_ID\")\r",
+									"console.log(\"get user id before uptade operation\",getvar)\r",
+									"\r",
+									"if (pm.iterationData.get(\"method\") === \"PUT\") {\r",
+									"    pm.request.method = 'PUT';\r",
+									"} else {\r",
+									"   // pm.request.method = 'POST';\r",
+									"}\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    pm.response.to.have.status(\"OK\");\r",
+									"\r",
+									"});\r",
+									"\r",
+									"const response = pm.response.json();\r",
+									"\r",
+									"// pm.test(\"Body structure is correct\", function () {\r",
+									"   \r",
+									"//     pm.expect(response).to.be.an('object');\r",
+									"\r",
+									"//     pm.expect(response).to.have.property('user_id');\r",
+									"//     pm.expect(response).to.have.property('user_first_name');\r",
+									"//     pm.expect(response).to.have.property('user_last_name');\r",
+									"//     pm.expect(response).to.have.property('user_contact_number');\r",
+									"//     pm.expect(response).to.have.property('user_email_id');\r",
+									"//     pm.expect(response).to.have.property('creation_time');\r",
+									"//     pm.expect(response).to.have.property('last_mod_time');\r",
+									"\r",
+									"\r",
+									"//     pm.expect(response).to.have.property('userAddress');\r",
+									"//     pm.expect(response.userAddress).to.have.property('addressId');\r",
+									"//     pm.expect(response.userAddress).to.have.property('plotNumber');\r",
+									"//     pm.expect(response.userAddress).to.have.property('street');\r",
+									"//     pm.expect(response.userAddress).to.have.property('state');\r",
+									"//     pm.expect(response.userAddress).to.have.property('country');\r",
+									"//     pm.expect(response.userAddress).to.have.property('zipCode');\r",
+									"// });\r",
+									"\r",
+									"// Validate the response JSON schema\r",
+									"pm.test(\"Response should be valid JSON\", function () {\r",
+									"    pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"\r",
+									"const jsondata=pm.response.json();\r",
+									"\r",
+									"pm.test(\"validate data type in response\",()=>\r",
+									"{\r",
+									"    \r",
+									"\r",
+									"    //addressId\r",
+									"   console.log(\"validate data type in response  \",jsondata)\r",
+									"   pm.expect(jsondata[0].addressId).to.be.a(\"integer\")\r",
+									"   pm.expect(jsondata[0].user_id).to.be.a(\"integer\")\r",
+									"    pm.expect(jsondata[0].user_first_name).to.be.a(\"String\")\r",
+									"    pm.expect(jsondata[0].user_last_name).to.be.a(\"String\")\r",
+									"      pm.expect(jsondata[0].user_contact_number).to.be.a(\"integer\")\r",
+									"      pm.expect(jsondata[0].user_email_id).to.be.a(\"String\")\r",
+									"      pm.expect(jsondata.userAddress[0].plotNumber).to.be.a(\"String\")\r",
+									"       pm.expect(jsondata[0].state).to.be.a(\"String\")\r",
+									"        pm.expect(jsondata[0].country).to.be.a(\"String\")\r",
+									"        pm.expect(jsondata[0].zipCode).to.be.a(\"integer\")\r",
+									"\r",
+									"})\r",
+									"\r",
+									"pm.test(\"Response should be valid JSON\", function () {\r",
+									"    pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"// pm.test(\"Validate response schema\", function() {\r",
+									"//     const responseJson = pm.response.json(); // Get the parsed JSON response\r",
+									"//     const validateSchema = pm.globals.get(\"validateSchema\"); // Retrieve the function\r",
+									"//    console.log(\"-------------------\"+validateSchema)\r",
+									"//     if (typeof validateSchema !== 'function') {\r",
+									"//         throw new Error('validateSchema is not a function');\r",
+									"//     }\r",
+									"\r",
+									"//     validateSchema(responseJson); // Call the function\r",
+									"// });\r",
+									"\r",
+									"// pm.test(\"Validate response schema\", function() {\r",
+									"//     const responseJson = pm.response.json(); // Get the parsed JSON response\r",
+									"//     const validateSchema = pm.environment.get(\"validateSchema\"); // Retrieve the global function\r",
+									"    \r",
+									"//     // Call the validation function with the response\r",
+									"//     validateSchema(responseJson);\r",
+									"// });\r",
+									"\r",
+									"//const responseData = pm.response.json();\r",
+									"var schema=\r",
+									"\r",
+									"{\r",
+									"  \"$schema\": \"http://json-schema.org/draft-04/schema#\",\r",
+									"  \"type\": \"object\",\r",
+									"  \"properties\": {\r",
+									"    \"userAddress\": {\r",
+									"      \"type\": \"object\",\r",
+									"      \"properties\": {\r",
+									"        \"addressId\": {\r",
+									"          \"type\": \"integer\"\r",
+									"        },\r",
+									"        \"plotNumber\": {\r",
+									"          \"type\": \"string\"\r",
+									"        },\r",
+									"        \"street\": {\r",
+									"          \"type\": \"string\"\r",
+									"        },\r",
+									"        \"state\": {\r",
+									"          \"type\": \"string\"\r",
+									"        },\r",
+									"        \"country\": {\r",
+									"          \"type\": \"string\"\r",
+									"        },\r",
+									"        \"zipCode\": {\r",
+									"          \"type\": \"integer\"\r",
+									"        }\r",
+									"      },\r",
+									"      \"required\": [\r",
+									"        \"addressId\",\r",
+									"        \"plotNumber\",\r",
+									"        \"street\",\r",
+									"        \"state\",\r",
+									"        \"country\",\r",
+									"        \"zipCode\"\r",
+									"      ]\r",
+									"    },\r",
+									"    \"user_id\": {\r",
+									"      \"type\": \"integer\"\r",
+									"    },\r",
+									"    \"user_first_name\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"user_last_name\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"user_contact_number\": {\r",
+									"      \"type\": \"integer\"\r",
+									"    },\r",
+									"    \"user_email_id\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"creation_time\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"last_mod_time\": {\r",
+									"      \"type\": \"string\"\r",
+									"    }\r",
+									"  },\r",
+									"  \"required\": [\r",
+									"    \"userAddress\",\r",
+									"    \"user_id\",\r",
+									"    \"user_first_name\",\r",
+									"    \"user_last_name\",\r",
+									"    \"user_contact_number\",\r",
+									"    \"user_email_id\",\r",
+									"    \"creation_time\",\r",
+									"    \"last_mod_time\"\r",
+									"  ]\r",
+									"}\r",
+									"    \r",
+									"\r",
+									"// const Ajv = require('ajv');\r",
+									"// const ajv = new Ajv();\r",
+									"// Schema validation\r",
+									"pm.test(\"Schema validation\", function () {\r",
+									"   \r",
+									"    pm.expect(tv4.validate(jsondata,schema)).to.be.true; // Check if valid\r",
+									"});\r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user_first_name\": \"{{user_first_name}}\",\r\n    \"user_last_name\": \"{{user_last_name}}\",\r\n    \"user_contact_number\": \"{{user_contact_number}}\",\r\n    \"user_email_id\": \"{{user_email_id}}\",\r\n    \"userAddress\": {\r\n     \"plotNumber\": \"B-21\",\r\n      \"street\": \"{{Street}}\",\r\n      \"state\": \"{{state}}\",\r\n      \"country\": \"{{Country}}\",\r\n      \"zipCode\": \"{{zipCode}}\"\r\n    }\r\n  }\r\n// {\r\n//   \"user_first_name\": \"Aishwarya\",\r\n//     \"user_last_name\": \"singh\",\r\n//     \"user_contact_number\": \"9876543216\",\r\n//     \"user_email_id\": \"Aishwarya_krishtin.doe@example.com\",\r\n//     \"userAddress\": {\r\n//     \"plotNumber\": \"B-21\",\r\n//     \"street\": \"Main Street\",\r\n//     \"state\": \"CA\",\r\n//     \"country\": \"USA\",\r\n//     \"zipCode\": \"90001\"\r\n//     }}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/updateuser/{{User_ID}}",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"updateuser",
+								"{{User_ID}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAlluserRequest",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    pm.response.to.have.status(\"OK\");\r",
+									"\r",
+									"});\r",
+									"\r",
+									"// Validate the response JSON schema\r",
+									"pm.test(\"Response should be valid JSON\", function () {\r",
+									"    pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"\r",
+									"const jsondata=pm.response.json();\r",
+									"\r",
+									"pm.test(\"validate data type in response\",()=>\r",
+									"{\r",
+									"    \r",
+									"\r",
+									"    //addressId\r",
+									"   console.log(\"validate data type in response  \",jsondata)\r",
+									"   pm.expect(jsondata[0].addressId).to.be.a(\"integer\")\r",
+									"   pm.expect(jsondata[0].user_id).to.be.a(\"integer\")\r",
+									"    pm.expect(jsondata[0].user_first_name).to.be.a(\"String\")\r",
+									"    pm.expect(jsondata[0].user_last_name).to.be.a(\"String\")\r",
+									"      pm.expect(jsondata[0].user_contact_number).to.be.a(\"integer\")\r",
+									"      pm.expect(jsondata[0].user_email_id).to.be.a(\"String\")\r",
+									"      pm.expect(jsondata[0].plotNumber).to.be.a(\"String\")\r",
+									"       pm.expect(jsondata[0].state).to.be.a(\"String\")\r",
+									"        pm.expect(jsondata[0].country).to.be.a(\"String\")\r",
+									"        pm.expect(jsondata[0].zipCode).to.be.a(\"integer\")\r",
+									"\r",
+									"})\r",
+									"\r",
+									"pm.test(\"Response should be valid JSON\", function () {\r",
+									"    pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"// pm.test(\"Validate response schema\", function() {\r",
+									"//     const responseJson = pm.response.json(); // Get the parsed JSON response\r",
+									"//     const validateSchema = pm.globals.get(\"validateSchema\"); // Retrieve the function\r",
+									"//    console.log(\"-------------------\"+validateSchema)\r",
+									"//     if (typeof validateSchema !== 'function') {\r",
+									"//         throw new Error('validateSchema is not a function');\r",
+									"//     }\r",
+									"\r",
+									"//     validateSchema(responseJson); // Call the function\r",
+									"// });\r",
+									"\r",
+									"// pm.test(\"Validate response schema\", function() {\r",
+									"//     const responseJson = pm.response.json(); // Get the parsed JSON response\r",
+									"//     const validateSchema = pm.environment.get(\"validateSchema\"); // Retrieve the global function\r",
+									"    \r",
+									"//     // Call the validation function with the response\r",
+									"//     validateSchema(responseJson);\r",
+									"// });\r",
+									"\r",
+									"//const responseData = pm.response.json();\r",
+									"var schema=\r",
+									"\r",
+									"{\r",
+									"  \"$schema\": \"http://json-schema.org/draft-04/schema#\",\r",
+									"  \"type\": \"array\",\r",
+									"  \"properties\": {\r",
+									"    \"userAddress\": {\r",
+									"      \"type\": \"object\",\r",
+									"      \"properties\": {\r",
+									"        \"addressId\": {\r",
+									"          \"type\": \"integer\"\r",
+									"        },\r",
+									"        \"plotNumber\": {\r",
+									"          \"type\": \"string\"\r",
+									"        },\r",
+									"        \"street\": {\r",
+									"          \"type\": \"string\"\r",
+									"        },\r",
+									"        \"state\": {\r",
+									"          \"type\": \"string\"\r",
+									"        },\r",
+									"        \"country\": {\r",
+									"          \"type\": \"string\"\r",
+									"        },\r",
+									"        \"zipCode\": {\r",
+									"          \"type\": \"integer\"\r",
+									"        }\r",
+									"      },\r",
+									"      \"required\": [\r",
+									"        \"addressId\",\r",
+									"        \"plotNumber\",\r",
+									"        \"street\",\r",
+									"        \"state\",\r",
+									"        \"country\",\r",
+									"        \"zipCode\"\r",
+									"      ]\r",
+									"    },\r",
+									"    \"user_id\": {\r",
+									"      \"type\": \"integer\"\r",
+									"    },\r",
+									"    \"user_first_name\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"user_last_name\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"user_contact_number\": {\r",
+									"      \"type\": \"integer\"\r",
+									"    },\r",
+									"    \"user_email_id\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"creation_time\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"last_mod_time\": {\r",
+									"      \"type\": \"string\"\r",
+									"    }\r",
+									"  },\r",
+									"  \"required\": [\r",
+									"    \"userAddress\",\r",
+									"    \"user_id\",\r",
+									"    \"user_first_name\",\r",
+									"    \"user_last_name\",\r",
+									"    \"user_contact_number\",\r",
+									"    \"user_email_id\",\r",
+									"    \"creation_time\",\r",
+									"    \"last_mod_time\"\r",
+									"  ]\r",
+									"}\r",
+									"    \r",
+									"\r",
+									"// const Ajv = require('ajv');\r",
+									"// const ajv = new Ajv();\r",
+									"// Schema validation\r",
+									"pm.test(\"Schema validation\", function () {\r",
+									"   \r",
+									"    pm.expect(tv4.validate(jsondata,schema)).to.be.true; // Check if valid\r",
+									"});\r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "userapi@nn",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "Numpy@gmail.com",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/users",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getUserDetailWithFirstName",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"  //   pm.expect(statusCode === 200 || statusCode === 201).to.be.true;\r",
+									"});\r",
+									"\r",
+									"// Validate the response JSON schema\r",
+									"pm.test(\"Response should be valid JSON\", function () {\r",
+									"    pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"\r",
+									"const jsondata=pm.response.json();\r",
+									"\r",
+									"pm.test(\"validate data type in response\",()=>\r",
+									"{\r",
+									"    \r",
+									"\r",
+									"    //addressId\r",
+									"   console.log(\"validate data type in response  \",jsondata)\r",
+									"   pm.expect(jsondata[0].addressId).to.be.a(\"integer\")\r",
+									"   pm.expect(jsondata[0].user_id).to.be.a(\"integer\")\r",
+									"    pm.expect(jsondata[0].user_first_name).to.be.a(\"String\")\r",
+									"    pm.expect(jsondata[0].user_last_name).to.be.a(\"String\")\r",
+									"      pm.expect(jsondata[0].user_contact_number).to.be.a(\"integer\")\r",
+									"      pm.expect(jsondata[0].user_email_id).to.be.a(\"String\")\r",
+									"      pm.expect(jsondata.userAddress[0].plotNumber).to.be.a(\"String\")\r",
+									"       pm.expect(jsondata[0].state).to.be.a(\"String\")\r",
+									"        pm.expect(jsondata[0].country).to.be.a(\"String\")\r",
+									"        pm.expect(jsondata[0].zipCode).to.be.a(\"integer\")\r",
+									"\r",
+									"})\r",
+									"\r",
+									"pm.test(\"Response should be valid JSON\", function () {\r",
+									"    pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"// pm.test(\"Validate response schema\", function() {\r",
+									"//     const responseJson = pm.response.json(); // Get the parsed JSON response\r",
+									"//     const validateSchema = pm.globals.get(\"validateSchema\"); // Retrieve the function\r",
+									"//    console.log(\"-------------------\"+validateSchema)\r",
+									"//     if (typeof validateSchema !== 'function') {\r",
+									"//         throw new Error('validateSchema is not a function');\r",
+									"//     }\r",
+									"\r",
+									"//     validateSchema(responseJson); // Call the function\r",
+									"// });\r",
+									"\r",
+									"// pm.test(\"Validate response schema\", function() {\r",
+									"//     const responseJson = pm.response.json(); // Get the parsed JSON response\r",
+									"//     const validateSchema = pm.environment.get(\"validateSchema\"); // Retrieve the global function\r",
+									"    \r",
+									"//     // Call the validation function with the response\r",
+									"//     validateSchema(responseJson);\r",
+									"// });\r",
+									"\r",
+									"//const responseData = pm.response.json();\r",
+									"var schema=\r",
+									"\r",
+									"{\r",
+									"  \"$schema\": \"http://json-schema.org/draft-04/schema#\",\r",
+									"  \"type\": \"array\",\r",
+									"  \"items\": [\r",
+									"    {\r",
+									"      \"type\": \"object\",\r",
+									"      \"properties\": {\r",
+									"        \"userAddress\": {\r",
+									"          \"type\": \"object\",\r",
+									"          \"properties\": {\r",
+									"            \"addressId\": {\r",
+									"              \"type\": \"integer\"\r",
+									"            },\r",
+									"            \"plotNumber\": {\r",
+									"              \"type\": \"null\"\r",
+									"            },\r",
+									"            \"street\": {\r",
+									"              \"type\": \"null\"\r",
+									"            },\r",
+									"            \"state\": {\r",
+									"              \"type\": \"string\"\r",
+									"            },\r",
+									"            \"country\": {\r",
+									"              \"type\": \"null\"\r",
+									"            },\r",
+									"            \"zipCode\": {\r",
+									"              \"type\": \"integer\"\r",
+									"            }\r",
+									"          },\r",
+									"          \"required\": [\r",
+									"            \"addressId\",\r",
+									"            \"plotNumber\",\r",
+									"            \"street\",\r",
+									"            \"state\",\r",
+									"            \"country\",\r",
+									"            \"zipCode\"\r",
+									"          ]\r",
+									"        },\r",
+									"        \"user_id\": {\r",
+									"          \"type\": \"integer\"\r",
+									"        },\r",
+									"        \"user_first_name\": {\r",
+									"          \"type\": \"string\"\r",
+									"        },\r",
+									"        \"user_last_name\": {\r",
+									"          \"type\": \"string\"\r",
+									"        },\r",
+									"        \"user_contact_number\": {\r",
+									"          \"type\": \"integer\"\r",
+									"        },\r",
+									"        \"user_email_id\": {\r",
+									"          \"type\": \"string\"\r",
+									"        },\r",
+									"        \"creation_time\": {\r",
+									"          \"type\": \"string\"\r",
+									"        },\r",
+									"        \"last_mod_time\": {\r",
+									"          \"type\": \"string\"\r",
+									"        }\r",
+									"      },\r",
+									"      \"required\": [\r",
+									"        \"userAddress\",\r",
+									"        \"user_id\",\r",
+									"        \"user_first_name\",\r",
+									"        \"user_last_name\",\r",
+									"        \"user_contact_number\",\r",
+									"        \"user_email_id\",\r",
+									"        \"creation_time\",\r",
+									"        \"last_mod_time\"\r",
+									"      ]\r",
+									"    }\r",
+									"  ]\r",
+									"}\r",
+									"    \r",
+									"\r",
+									"// const Ajv = require('ajv');\r",
+									"// const ajv = new Ajv();\r",
+									"// Schema validation\r",
+									"pm.test(\"Schema validation\", function () {\r",
+									"   \r",
+									"    pm.expect(tv4.validate(jsondata,schema)).to.be.true; // Check if valid\r",
+									"});\r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									"//PostmanLegacy.setNextRequest(\"deleteUserByName\")"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "userapi@nn",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "Numpy@gmail.com",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/users/username/{{userFirst_Name}}",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"users",
+								"username",
+								"{{userFirst_Name}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getUserDetailWithValidUserId",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"  //   pm.expect(statusCode === 200 || statusCode === 201).to.be.true;\r",
+									"});\r",
+									"\r",
+									"// Validate the response JSON schema\r",
+									"pm.test(\"Response should be valid JSON\", function () {\r",
+									"    pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"\r",
+									"const jsondata=pm.response.json();\r",
+									"\r",
+									"pm.test(\"validate data type in response\",()=>\r",
+									"{\r",
+									"    \r",
+									"\r",
+									"    //addressId\r",
+									"   console.log(\"validate data type in response  \",jsondata)\r",
+									"   pm.expect(jsondata[0].addressId).to.be.a(\"integer\")\r",
+									"   pm.expect(jsondata[0].user_id).to.be.a(\"integer\")\r",
+									"    pm.expect(jsondata[0].user_first_name).to.be.a(\"String\")\r",
+									"    pm.expect(jsondata[0].user_last_name).to.be.a(\"String\")\r",
+									"      pm.expect(jsondata[0].user_contact_number).to.be.a(\"integer\")\r",
+									"      pm.expect(jsondata[0].user_email_id).to.be.a(\"String\")\r",
+									"      pm.expect(jsondata.userAddress[0].plotNumber).to.be.a(\"String\")\r",
+									"       pm.expect(jsondata[0].state).to.be.a(\"String\")\r",
+									"        pm.expect(jsondata[0].country).to.be.a(\"String\")\r",
+									"        pm.expect(jsondata[0].zipCode).to.be.a(\"integer\")\r",
+									"\r",
+									"})\r",
+									"\r",
+									"pm.test(\"Response should be valid JSON\", function () {\r",
+									"    pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"// pm.test(\"Validate response schema\", function() {\r",
+									"//     const responseJson = pm.response.json(); // Get the parsed JSON response\r",
+									"//     const validateSchema = pm.globals.get(\"validateSchema\"); // Retrieve the function\r",
+									"//    console.log(\"-------------------\"+validateSchema)\r",
+									"//     if (typeof validateSchema !== 'function') {\r",
+									"//         throw new Error('validateSchema is not a function');\r",
+									"//     }\r",
+									"\r",
+									"//     validateSchema(responseJson); // Call the function\r",
+									"// });\r",
+									"\r",
+									"// pm.test(\"Validate response schema\", function() {\r",
+									"//     const responseJson = pm.response.json(); // Get the parsed JSON response\r",
+									"//     const validateSchema = pm.environment.get(\"validateSchema\"); // Retrieve the global function\r",
+									"    \r",
+									"//     // Call the validation function with the response\r",
+									"//     validateSchema(responseJson);\r",
+									"// });\r",
+									"\r",
+									"//const responseData = pm.response.json();\r",
+									"var schema=\r",
+									"\r",
+									"{\r",
+									"  \"$schema\": \"http://json-schema.org/draft-04/schema#\",\r",
+									"  \"type\": \"object\",\r",
+									"  \"properties\": {\r",
+									"    \"userAddress\": {\r",
+									"      \"type\": \"object\",\r",
+									"      \"properties\": {\r",
+									"        \"addressId\": {\r",
+									"          \"type\": \"integer\"\r",
+									"        },\r",
+									"        \"plotNumber\": {\r",
+									"          \"type\": \"null\"\r",
+									"        },\r",
+									"        \"street\": {\r",
+									"          \"type\": \"null\"\r",
+									"        },\r",
+									"        \"state\": {\r",
+									"          \"type\": \"string\"\r",
+									"        },\r",
+									"        \"country\": {\r",
+									"          \"type\": \"null\"\r",
+									"        },\r",
+									"        \"zipCode\": {\r",
+									"          \"type\": \"integer\"\r",
+									"        }\r",
+									"      },\r",
+									"      \"required\": [\r",
+									"        \"addressId\",\r",
+									"        \"plotNumber\",\r",
+									"        \"street\",\r",
+									"        \"state\",\r",
+									"        \"country\",\r",
+									"        \"zipCode\"\r",
+									"      ]\r",
+									"    },\r",
+									"    \"user_id\": {\r",
+									"      \"type\": \"integer\"\r",
+									"    },\r",
+									"    \"user_first_name\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"user_last_name\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"user_contact_number\": {\r",
+									"      \"type\": \"integer\"\r",
+									"    },\r",
+									"    \"user_email_id\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"creation_time\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"last_mod_time\": {\r",
+									"      \"type\": \"string\"\r",
+									"    }\r",
+									"  },\r",
+									"  \"required\": [\r",
+									"    \"userAddress\",\r",
+									"    \"user_id\",\r",
+									"    \"user_first_name\",\r",
+									"    \"user_last_name\",\r",
+									"    \"user_contact_number\",\r",
+									"    \"user_email_id\",\r",
+									"    \"creation_time\",\r",
+									"    \"last_mod_time\"\r",
+									"  ]\r",
+									"}\r",
+									"    \r",
+									"\r",
+									"// const Ajv = require('ajv');\r",
+									"// const ajv = new Ajv();\r",
+									"// Schema validation\r",
+									"pm.test(\"Schema validation\", function () {\r",
+									"   \r",
+									"    pm.expect(tv4.validate(jsondata,schema)).to.be.true; // Check if valid\r",
+									"});\r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									"//PostmanLegacy.setNextRequest(\"deleteUserByName\")"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "userapi@nn",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "Numpy@gmail.com",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/user/{{User_ID}}",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"user",
+								"{{User_ID}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteUserByName",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    pm.response.to.have.status(\"OK\");\r",
+									"\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "userapi@nn",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "Numpy@gmail.com",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/deleteuser/username/{{userFirst_Name}}",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"deleteuser",
+								"username",
+								"{{userFirst_Name}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteUserByID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//pm.environment.unset(\"userFirst_Name\")\r",
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    pm.response.to.have.status(\"OK\");\r",
+									"\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "userapi@nn",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "Numpy@gmail.com",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/deleteuser/{{User_ID}}",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"deleteuser",
+								"{{User_ID}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							"// function validateSchema(response) {\r",
+							"//     console.log(\"function called\")\r",
+							"// var schema=\r",
+							"\r",
+							"// {\r",
+							"//   \"$schema\": \"http://json-schema.org/draft-04/schema#\",\r",
+							"//   \"type\": \"array\",\r",
+							"//   \"properties\": {\r",
+							"//     \"userAddress\": {\r",
+							"//       \"type\": \"object\",\r",
+							"//       \"properties\": {\r",
+							"//         \"addressId\": {\r",
+							"//           \"type\": \"integer\"\r",
+							"//         },\r",
+							"//         \"plotNumber\": {\r",
+							"//           \"type\": \"string\"\r",
+							"//         },\r",
+							"//         \"street\": {\r",
+							"//           \"type\": \"string\"\r",
+							"//         },\r",
+							"//         \"state\": {\r",
+							"//           \"type\": \"string\"\r",
+							"//         },\r",
+							"//         \"country\": {\r",
+							"//           \"type\": \"string\"\r",
+							"//         },\r",
+							"//         \"zipCode\": {\r",
+							"//           \"type\": \"integer\"\r",
+							"//         }\r",
+							"//       },\r",
+							"//       \"required\": [\r",
+							"//         \"addressId\",\r",
+							"//         \"plotNumber\",\r",
+							"//         \"street\",\r",
+							"//         \"state\",\r",
+							"//         \"country\",\r",
+							"//         \"zipCode\"\r",
+							"//       ]\r",
+							"//     },\r",
+							"//     \"user_id\": {\r",
+							"//       \"type\": \"integer\"\r",
+							"//     },\r",
+							"//     \"user_first_name\": {\r",
+							"//       \"type\": \"string\"\r",
+							"//     },\r",
+							"//     \"user_last_name\": {\r",
+							"//       \"type\": \"string\"\r",
+							"//     },\r",
+							"//     \"user_contact_number\": {\r",
+							"//       \"type\": \"integer\"\r",
+							"//     },\r",
+							"//     \"user_email_id\": {\r",
+							"//       \"type\": \"string\"\r",
+							"//     },\r",
+							"//     \"creation_time\": {\r",
+							"//       \"type\": \"string\"\r",
+							"//     },\r",
+							"//     \"last_mod_time\": {\r",
+							"//       \"type\": \"string\"\r",
+							"//     }\r",
+							"//   },\r",
+							"//   \"required\": [\r",
+							"//     \"userAddress\",\r",
+							"//     \"user_id\",\r",
+							"//     \"user_first_name\",\r",
+							"//     \"user_last_name\",\r",
+							"//     \"user_contact_number\",\r",
+							"//     \"user_email_id\",\r",
+							"//     \"creation_time\",\r",
+							"//     \"last_mod_time\"\r",
+							"//   ]\r",
+							"// }\r",
+							"    \r",
+							"\r",
+							"// // const Ajv = require('ajv');\r",
+							"// // const ajv = new Ajv();\r",
+							"// // Schema validation\r",
+							"// pm.test(\"Schema validation\", function () {\r",
+							"   \r",
+							"//     pm.expect(tv4.validate(jsondata,schema)).to.be.true; // Check if valid\r",
+							"// });\r",
+							"\r",
+							"// pm.test(\"Validate response schema\", function() {\r",
+							"//     const responseJson = pm.response.json(); // Get the parsed JSON response\r",
+							"//     validateSchema(responseJson); // Call the function directly\r",
+							"// });\r",
+							"\r",
+							"// pm.globals.set(\"validateSchema\", validateSchema);\r",
+							"\r",
+							"// ///pm.globals.set(\"validateSchema\", validateSchema);\r",
+							"\r",
+							"// }"
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							"// function validateSchema(response) {\r",
+							"// var schema=\r",
+							"\r",
+							"// {\r",
+							"//   \"$schema\": \"http://json-schema.org/draft-04/schema#\",\r",
+							"//   \"type\": \"array\",\r",
+							"//   \"properties\": {\r",
+							"//     \"userAddress\": {\r",
+							"//       \"type\": \"object\",\r",
+							"//       \"properties\": {\r",
+							"//         \"addressId\": {\r",
+							"//           \"type\": \"integer\"\r",
+							"//         },\r",
+							"//         \"plotNumber\": {\r",
+							"//           \"type\": \"string\"\r",
+							"//         },\r",
+							"//         \"street\": {\r",
+							"//           \"type\": \"string\"\r",
+							"//         },\r",
+							"//         \"state\": {\r",
+							"//           \"type\": \"string\"\r",
+							"//         },\r",
+							"//         \"country\": {\r",
+							"//           \"type\": \"string\"\r",
+							"//         },\r",
+							"//         \"zipCode\": {\r",
+							"//           \"type\": \"integer\"\r",
+							"//         }\r",
+							"//       },\r",
+							"//       \"required\": [\r",
+							"//         \"addressId\",\r",
+							"//         \"plotNumber\",\r",
+							"//         \"street\",\r",
+							"//         \"state\",\r",
+							"//         \"country\",\r",
+							"//         \"zipCode\"\r",
+							"//       ]\r",
+							"//     },\r",
+							"//     \"user_id\": {\r",
+							"//       \"type\": \"integer\"\r",
+							"//     },\r",
+							"//     \"user_first_name\": {\r",
+							"//       \"type\": \"string\"\r",
+							"//     },\r",
+							"//     \"user_last_name\": {\r",
+							"//       \"type\": \"string\"\r",
+							"//     },\r",
+							"//     \"user_contact_number\": {\r",
+							"//       \"type\": \"integer\"\r",
+							"//     },\r",
+							"//     \"user_email_id\": {\r",
+							"//       \"type\": \"string\"\r",
+							"//     },\r",
+							"//     \"creation_time\": {\r",
+							"//       \"type\": \"string\"\r",
+							"//     },\r",
+							"//     \"last_mod_time\": {\r",
+							"//       \"type\": \"string\"\r",
+							"//     }\r",
+							"//   },\r",
+							"//   \"required\": [\r",
+							"//     \"userAddress\",\r",
+							"//     \"user_id\",\r",
+							"//     \"user_first_name\",\r",
+							"//     \"user_last_name\",\r",
+							"//     \"user_contact_number\",\r",
+							"//     \"user_email_id\",\r",
+							"//     \"creation_time\",\r",
+							"//     \"last_mod_time\"\r",
+							"//   ]\r",
+							"// }\r",
+							"    \r",
+							"\r",
+							"// // const Ajv = require('ajv');\r",
+							"// // const ajv = new Ajv();\r",
+							"// // Schema validation\r",
+							"// // pm.test(\"Schema validation\", function () {\r",
+							"   \r",
+							"// //     pm.expect(tv4.validate(jsondata,schema)).to.be.true; // Check if valid\r",
+							"// //     pm.test(\"Validate response schema\", function() {\r",
+							"// //     const responseJson = pm.response.json(); // Get the parsed JSON response\r",
+							"// //     validateSchema(responseJson); // Call the function directly\r",
+							"// // pm.globals.set(\"validateSchema\", validateSchema);\r",
+							"\r",
+							"    \r",
+							"// // });\r",
+							"\r",
+							"    \r",
+							"    \r",
+							"// // });\r",
+							"\r",
+							"\r",
+							"// pm.test(\"Validate response schema\", function() {\r",
+							"//     const responseJson = pm.response.json(); // Get the parsed JSON response\r",
+							"//     validateSchema(responseJson); // Call the function directly\r",
+							"// });\r",
+							"\r",
+							"// pm.globals.set(\"validateSchema\", validateSchema);\r",
+							"\r",
+							"\r",
+							"// }"
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "NegativeScenarios",
+			"item": [
+				{
+					"name": "createUserWithoutContentType",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"  //   pm.expect(statusCode === 200 || statusCode === 201).to.be.true;\r",
+									"});\r",
+									"\r",
+									"// Validate the response JSON schema\r",
+									"pm.test(\"Response should be valid JSON\", function () {\r",
+									"    pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"\r",
+									"\r",
+									"//PostmanLegacy.setNextRequest(\"deleteUserByName\")"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "userapi@nn",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "Numpy@gmail.com",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user_first_name\": \"Andreaa\",\r\n    \"user_last_name\": \"doe\",\r\n    \"user_contact_number\": \"1034569880\",\r\n    \"user_email_id\": \"Andrea.do#example\",\r\n    \"userAddress\": {\r\n      \"PlotNumber\": \"101\",\r\n      \"Street\": \"Main Street\",\r\n      \"state\": \"CA\",\r\n      \"Country\": \"USA\",\r\n      \"zipCode\": \"90001\"\r\n    }\r\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/createusers",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"createusers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createUserWithInvalidFirstName",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"  //   pm.expect(statusCode === 200 || statusCode === 201).to.be.true;\r",
+									"});\r",
+									"\r",
+									"// Validate the response JSON schema\r",
+									"pm.test(\"Response should be valid JSON\", function () {\r",
+									"    pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"\r",
+									"\r",
+									"//PostmanLegacy.setNextRequest(\"deleteUserByName\")"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "userapi@nn",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "Numpy@gmail.com",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user_first_name\": \"12Andrea\",\r\n    \"user_last_name\": \"Doe\",\r\n    \"user_contact_number\": \"1034569890\",\r\n    \"user_email_id\": \"jon.do@example.com\",\r\n    \"userAddress\": {\r\n      \"PlotNumber\": \"101\",\r\n      \"Street\": \"Main Street\",\r\n      \"state\": \"CA\",\r\n      \"Country\": \"USA\",\r\n      \"zipCode\": \"90001\"\r\n    }\r\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/createusers",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"createusers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createUserWith_ExistingEmailID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"  //   pm.expect(statusCode === 200 || statusCode === 201).to.be.true;\r",
+									"});\r",
+									"\r",
+									"// Validate the response JSON schema\r",
+									"pm.test(\"Response should be valid JSON\", function () {\r",
+									"    pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"\r",
+									"\r",
+									"//PostmanLegacy.setNextRequest(\"deleteUserByName\")"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "userapi@nn",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "Numpy@gmail.com",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user_first_name\": \"krishtina\",\r\n    \"user_last_name\": \"giden\",\r\n    \"user_contact_number\": \"1234567896\",\r\n    \"user_email_id\": \"krishti.doe@example.com\",\r\n      \"userAddress\": {\r\n    \"PlotNumber\": \"101\",\r\n    \"Street\": \"Main Street\",\r\n    \"state\": \"CA\",\r\n    \"Country\": \"USA\",\r\n    \"zipCode\": \"90001\"\r\n  }}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/createusers",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"createusers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createUserWith_ExistingContactNumber",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"  //   pm.expect(statusCode === 200 || statusCode === 201).to.be.true;\r",
+									"});\r",
+									"\r",
+									"// Validate the response JSON schema\r",
+									"pm.test(\"Response should be valid JSON\", function () {\r",
+									"    pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"\r",
+									"\r",
+									"//PostmanLegacy.setNextRequest(\"deleteUserByName\")"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "userapi@nn",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "Numpy@gmail.com",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user_first_name\": \"krishtina\",\r\n    \"user_last_name\": \"giden\",\r\n    \"user_contact_number\": \"1234567896\",\r\n    \"user_email_id\": \"krisht.doe@example.com\",\r\n      \"userAddress\": {\r\n    \"PlotNumber\": \"101\",\r\n    \"Street\": \"Main Street\",\r\n    \"state\": \"CA\",\r\n    \"Country\": \"USA\",\r\n    \"zipCode\": \"90001\"\r\n  }}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/createusers",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"createusers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createUserWithInvalidlastName",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"  //   pm.expect(statusCode === 200 || statusCode === 201).to.be.true;\r",
+									"});\r",
+									"\r",
+									"// Validate the response JSON schema\r",
+									"pm.test(\"Response should be valid JSON\", function () {\r",
+									"    pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"\r",
+									"\r",
+									"//PostmanLegacy.setNextRequest(\"deleteUserByName\")"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "userapi@nn",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "Numpy@gmail.com",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user_first_name\": \"Andreaa\",\r\n    \"user_last_name\": \"12doe\",\r\n    \"user_contact_number\": \"1034569880\",\r\n    \"user_email_id\": \"Andrea.do@example.com\",\r\n    \"userAddress\": {\r\n      \"PlotNumber\": \"101\",\r\n      \"Street\": \"Main Street\",\r\n      \"state\": \"CA\",\r\n      \"Country\": \"USA\",\r\n      \"zipCode\": \"90001\"\r\n    }\r\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/createusers",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"createusers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createUserWithInvalidEmailID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"  //   pm.expect(statusCode === 200 || statusCode === 201).to.be.true;\r",
+									"});\r",
+									"\r",
+									"// Validate the response JSON schema\r",
+									"pm.test(\"Response should be valid JSON\", function () {\r",
+									"    pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"\r",
+									"\r",
+									"//PostmanLegacy.setNextRequest(\"deleteUserByName\")"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "userapi@nn",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "Numpy@gmail.com",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user_first_name\": \"Andreaa\",\r\n    \"user_last_name\": \"doe\",\r\n    \"user_contact_number\": \"1034569880\",\r\n    \"user_email_id\": \"Andrea.do#example\",\r\n    \"userAddress\": {\r\n      \"PlotNumber\": \"101\",\r\n      \"Street\": \"Main Street\",\r\n      \"state\": \"CA\",\r\n      \"Country\": \"USA\",\r\n      \"zipCode\": \"90001\"\r\n    }\r\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/createusers",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"createusers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createUserWithInvalidZipCode",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"  //   pm.expect(statusCode === 200 || statusCode === 201).to.be.true;\r",
+									"});\r",
+									"\r",
+									"// Validate the response JSON schema\r",
+									"pm.test(\"Response should be valid JSON\", function () {\r",
+									"    pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"\r",
+									"\r",
+									"//PostmanLegacy.setNextRequest(\"deleteUserByName\")"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "userapi@nn",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "Numpy@gmail.com",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user_first_name\": \"Anna\",\r\n    \"user_last_name\": \"Doe\",\r\n    \"user_contact_number\": \"1034569881\",\r\n    \"user_email_id\": \"Ann.do@example.com\",\r\n    \"userAddress\": {\r\n      \"PlotNumber\": \"101\",\r\n      \"Street\": \"Main Street\",\r\n      \"state\": \"CA\",\r\n      \"Country\": \"USA\",\r\n      \"zipCode\": \"###123\"\r\n    }\r\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/createusers",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"createusers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createUserWithInvalid_plotName",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"  //   pm.expect(statusCode === 200 || statusCode === 201).to.be.true;\r",
+									"});\r",
+									"\r",
+									"// Validate the response JSON schema\r",
+									"pm.test(\"Response should be valid JSON\", function () {\r",
+									"    pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"\r",
+									"\r",
+									"//PostmanLegacy.setNextRequest(\"deleteUserByName\")"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "userapi@nn",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "Numpy@gmail.com",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user_first_name\": \"Anna\",\r\n    \"user_last_name\": \"Doe\",\r\n    \"user_contact_number\": \"1034569881\",\r\n    \"user_email_id\": \"Ann.do@example.com\",\r\n    \"userAddress\": {\r\n      \"PlotNumber\": \"101@@@@@@\",\r\n      \"Street\": \"Main Street\",\r\n      \"state\": \"CA\",\r\n      \"Country\": \"USA\",\r\n      \"zipCode\": \"12123\"\r\n    }\r\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/createusers",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"createusers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createUserWithInvalid_ContactNumber_Min-1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"  //   pm.expect(statusCode === 200 || statusCode === 201).to.be.true;\r",
+									"});\r",
+									"\r",
+									"// Validate the response JSON schema\r",
+									"pm.test(\"Response should be valid JSON\", function () {\r",
+									"    pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"\r",
+									"\r",
+									"//PostmanLegacy.setNextRequest(\"deleteUserByName\")"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "userapi@nn",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "Numpy@gmail.com",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user_first_name\": \"An\",\r\n    \"user_last_name\": \"Doe\",\r\n    \"user_contact_number\": \"103456988\",\r\n    \"user_email_id\": \"An2.do@example.com\",\r\n    \"userAddress\": {\r\n      \"PlotNumber\": \"101@@@@@@\",\r\n      \"Street\": \"Main Street\",\r\n      \"state\": \"CA\",\r\n      \"Country\": \"USA\",\r\n      \"zipCode\": \"12123\"\r\n    }\r\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/createusers",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"createusers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createUserWithInvalid_ContactNumber_Max+1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"  //   pm.expect(statusCode === 200 || statusCode === 201).to.be.true;\r",
+									"});\r",
+									"\r",
+									"// Validate the response JSON schema\r",
+									"pm.test(\"Response should be valid JSON\", function () {\r",
+									"    pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"\r",
+									"\r",
+									"//PostmanLegacy.setNextRequest(\"deleteUserByName\")"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "userapi@nn",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "Numpy@gmail.com",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user_first_name\": \"Anna\",\r\n    \"user_last_name\": \"Doe\",\r\n    \"user_contact_number\": \"12345678901\",\r\n    \"user_email_id\": \"An2.do@example.com\",\r\n    \"userAddress\": {\r\n      \"PlotNumber\": \"101@@@@@@\",\r\n      \"Street\": \"Main Street\",\r\n      \"state\": \"CA\",\r\n      \"Country\": \"USA\",\r\n      \"zipCode\": \"12123\"\r\n    }\r\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/createusers",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"createusers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createUserWithInvalid_CountryName",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"  //   pm.expect(statusCode === 200 || statusCode === 201).to.be.true;\r",
+									"});\r",
+									"\r",
+									"// Validate the response JSON schema\r",
+									"pm.test(\"Response should be valid JSON\", function () {\r",
+									"    pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"\r",
+									"\r",
+									"//PostmanLegacy.setNextRequest(\"deleteUserByName\")"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "userapi@nn",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "Numpy@gmail.com",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user_first_name\": \"Anni\",\r\n    \"user_last_name\": \"Doe\",\r\n    \"user_contact_number\": \"1284567611\",\r\n    \"user_email_id\": \"An23.do@example.com\",\r\n    \"userAddress\": {\r\n      \"PlotNumber\": \"101@@@@@@\",\r\n      \"Street\": \"Main Street\",\r\n      \"state\": \"CA\",\r\n      \"Country\": 12345,\r\n      \"zipCode\": \"12123\"\r\n    }\r\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/createusers",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"createusers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createUserWithout_MandatoryFields",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"  //   pm.expect(statusCode === 200 || statusCode === 201).to.be.true;\r",
+									"});\r",
+									"\r",
+									"// Validate the response JSON schema\r",
+									"pm.test(\"Response should be valid JSON\", function () {\r",
+									"    pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"\r",
+									"\r",
+									"//PostmanLegacy.setNextRequest(\"deleteUserByName\")"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "userapi@nn",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "Numpy@gmail.com",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    // \"user_first_name\": \"Anni\",\r\n    // \"user_last_name\": \"Doe\",\r\n    // \"user_contact_number\": \"1284567611\",\r\n    // \"user_email_id\": \"An23.do@example.com\",\r\n    // \"userAddress\": {\r\n      \"PlotNumber\": \"101@@@@@@\",\r\n      \"Street\": \"Main Street\",\r\n      \"state\": \"CA\",\r\n      \"Country\": 12345,\r\n      \"zipCode\": \"12123\"\r\n    }\r\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/createusers",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"createusers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createUserWithSomeExtraFields",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"  //   pm.expect(statusCode === 200 || statusCode === 201).to.be.true;\r",
+									"});\r",
+									"\r",
+									"// Validate the response JSON schema\r",
+									"pm.test(\"Response should be valid JSON\", function () {\r",
+									"    pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"\r",
+									"\r",
+									"//PostmanLegacy.setNextRequest(\"deleteUserByName\")"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "userapi@nn",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "Numpy@gmail.com",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    // here age in extra data that is not included in Br,but still it is sucessfull\r\n    \"user_first_name\": \"Anni\",\r\n    \"age\":23,\r\n    \"user_last_name\": \"Doe\",\r\n    \"user_contact_number\": \"1284567611\",\r\n    \"user_email_id\": \"An23.do@example.com\",\r\n    \"userAddress\": {\r\n      \"PlotNumber\": \"101@@@@@@\",\r\n      \"Street\": \"Main Street\",\r\n      \"state\": \"CA\",\r\n      \"Country\": 12345,\r\n      \"zipCode\": \"12123\"\r\n    }\r\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/createusers",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"createusers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getUserDetailWithFirstName_WithoutAuthorization",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"  //   pm.expect(statusCode === 200 || statusCode === 201).to.be.true;\r",
+									"});\r",
+									"\r",
+									"// Validate the response JSON schema\r",
+									"pm.test(\"Response should be valid JSON\", function () {\r",
+									"    pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"\r",
+									"\r",
+									"//PostmanLegacy.setNextRequest(\"deleteUserByName\")"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/users/username/Numpy",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"users",
+								"username",
+								"Numpy"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getUserDetailWithValidUserID_WithoutSettingBasicAuth",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"  //   pm.expect(statusCode === 200 || statusCode === 201).to.be.true;\r",
+									"});\r",
+									"\r",
+									"// Validate the response JSON schema\r",
+									"pm.test(\"Response should be valid JSON\", function () {\r",
+									"    pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"\r",
+									"\r",
+									"//PostmanLegacy.setNextRequest(\"deleteUserByName\")"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/user/{{userid}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"user",
+								"{{userid}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getUserDetailWith_InvalidFirstName",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"  //   pm.expect(statusCode === 200 || statusCode === 201).to.be.true;\r",
+									"});\r",
+									"\r",
+									"// Validate the response JSON schema\r",
+									"pm.test(\"Response should be valid JSON\", function () {\r",
+									"    pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"\r",
+									"\r",
+									"//PostmanLegacy.setNextRequest(\"deleteUserByName\")"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "userapi@nn",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "Numpy@gmail.com",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/users/username/{{inavailidFirstname}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"users",
+								"username",
+								"{{inavailidFirstname}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getUserDetailWith_NonExistingID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"  //   pm.expect(statusCode === 200 || statusCode === 201).to.be.true;\r",
+									"});\r",
+									"\r",
+									"// Validate the response JSON schema\r",
+									"pm.test(\"Response should be valid JSON\", function () {\r",
+									"    pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"\r",
+									"\r",
+									"//PostmanLegacy.setNextRequest(\"deleteUserByName\")"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "userapi@nn",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "Numpy@gmail.com",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/users/username/447",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"users",
+								"username",
+								"447"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getUserDetailWith_InvalidEndPoint",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"  //   pm.expect(statusCode === 200 || statusCode === 201).to.be.true;\r",
+									"});\r",
+									"\r",
+									"// Validate the response JSON schema\r",
+									"pm.test(\"Response should be valid JSON\", function () {\r",
+									"    pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"\r",
+									"\r",
+									"//PostmanLegacy.setNextRequest(\"deleteUserByName\")"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "userapi@nn",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "Numpy@gmail.com",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/users{{invalidenpoint}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"users{{invalidenpoint}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getUserDetailWithFirstNameWithInvalidMethod",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"  //   pm.expect(statusCode === 200 || statusCode === 201).to.be.true;\r",
+									"});\r",
+									"\r",
+									"// Validate the response JSON schema\r",
+									"pm.test(\"Response should be valid JSON\", function () {\r",
+									"    pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"\r",
+									"\r",
+									"//PostmanLegacy.setNextRequest(\"deleteUserByName\")"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "userapi@nn",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "Numpy@gmail.com",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/users/username/{{f_name_Numpy}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"users",
+								"username",
+								"{{f_name_Numpy}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getUserDetailWithUserID_WithInvalidMethod",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"  //   pm.expect(statusCode === 200 || statusCode === 201).to.be.true;\r",
+									"});\r",
+									"\r",
+									"// Validate the response JSON schema\r",
+									"pm.test(\"Response should be valid JSON\", function () {\r",
+									"    pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"\r",
+									"\r",
+									"//PostmanLegacy.setNextRequest(\"deleteUserByName\")"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "userapi@nn",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "Numpy@gmail.com",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/user/{{userid}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"user",
+								"{{userid}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getUserDetailWith_InValidUserId",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"  //   pm.expect(statusCode === 200 || statusCode === 201).to.be.true;\r",
+									"});\r",
+									"\r",
+									"// Validate the response JSON schema\r",
+									"pm.test(\"Response should be valid JSON\", function () {\r",
+									"    pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"\r",
+									"\r",
+									"//PostmanLegacy.setNextRequest(\"deleteUserByName\")"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "userapi@nn",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "Numpy@gmail.com",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/user/{{invlid_userId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"user",
+								"{{invlid_userId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getUserDetailWithValidUserId_And_Invalid Endpoint",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"  //   pm.expect(statusCode === 200 || statusCode === 201).to.be.true;\r",
+									"});\r",
+									"\r",
+									"// Validate the response JSON schema\r",
+									"pm.test(\"Response should be valid JSON\", function () {\r",
+									"    pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"\r",
+									"\r",
+									"//PostmanLegacy.setNextRequest(\"deleteUserByName\")"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "userapi@nn",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "Numpy@gmail.com",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}users{{invalidenpoint}}{{userid}}",
+							"host": [
+								"{{baseUrl}}users{{invalidenpoint}}{{userid}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createuser_OnlyTo Test N_Update scenarios",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is either 200 or 201\", function () {\r",
+									"    var statusCode = pm.response.code;\r",
+									"    pm.expect(statusCode === 200 || statusCode === 201).to.be.true;\r",
+									"});\r",
+									"\r",
+									"// Validate the response JSON schema\r",
+									"pm.test(\"Response should be valid JSON\", function () {\r",
+									"    pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"// // Validate a specific field in the response\r",
+									"// pm.test(\"User first name is correct\", function () {\r",
+									"//     var jsonData = pm.response.json();\r",
+									"//     //pm.expect(jsonData.user_first_name).to.eql(\"Andrea\");\r",
+									"// });\r",
+									"const response=pm.response.json();\r",
+									"//pm.collectionVariables.set('userID',response.user_id);\r",
+									"pm.environment.set(\"User_ID\",response.user_id)\r",
+									"pm.environment.set(\"userFirst_Name\",response.user_first_name)\r",
+									"console.log(\"++++++++++++\",response.user_first_name)\r",
+									"\r",
+									"\r",
+									"var schema=\r",
+									"\r",
+									"{\r",
+									"  \"$schema\": \"http://json-schema.org/draft-04/schema#\",\r",
+									"  \"type\": \"object\",\r",
+									"  \"properties\": {\r",
+									"    \"userAddress\": {\r",
+									"      \"type\": \"object\",\r",
+									"      \"properties\": {\r",
+									"        \"addressId\": {\r",
+									"          \"type\": \"integer\"\r",
+									"        },\r",
+									"        \"plotNumber\": {\r",
+									"          \"type\": \"null\"\r",
+									"        },\r",
+									"        \"street\": {\r",
+									"          \"type\": \"null\"\r",
+									"        },\r",
+									"        \"state\": {\r",
+									"          \"type\": \"string\"\r",
+									"        },\r",
+									"        \"country\": {\r",
+									"          \"type\": \"null\"\r",
+									"        },\r",
+									"        \"zipCode\": {\r",
+									"          \"type\": \"integer\"\r",
+									"        }\r",
+									"      },\r",
+									"      \"required\": [\r",
+									"        \"addressId\",\r",
+									"        \"plotNumber\",\r",
+									"        \"street\",\r",
+									"        \"state\",\r",
+									"        \"country\",\r",
+									"        \"zipCode\"\r",
+									"      ]\r",
+									"    },\r",
+									"    \"user_id\": {\r",
+									"      \"type\": \"integer\"\r",
+									"    },\r",
+									"    \"user_first_name\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"user_last_name\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"user_contact_number\": {\r",
+									"      \"type\": \"integer\"\r",
+									"    },\r",
+									"    \"user_email_id\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"creation_time\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"last_mod_time\": {\r",
+									"      \"type\": \"string\"\r",
+									"    }\r",
+									"  },\r",
+									"  \"required\": [\r",
+									"    \"userAddress\",\r",
+									"    \"user_id\",\r",
+									"    \"user_first_name\",\r",
+									"    \"user_last_name\",\r",
+									"    \"user_contact_number\",\r",
+									"    \"user_email_id\",\r",
+									"    \"creation_time\",\r",
+									"    \"last_mod_time\"\r",
+									"  ]\r",
+									"}\r",
+									"    \r",
+									"\r",
+									"// const Ajv = require('ajv');\r",
+									"// const ajv = new Ajv();\r",
+									"// Schema validation\r",
+									"pm.test(\"Schema validation\", function () {\r",
+									"   \r",
+									"    pm.expect(tv4.validate(response,schema)).to.be.true; // Check if valid\r",
+									"});\r",
+									"\r",
+									"//PostmanLegacy.setNextRequest(\"deleteUserByName\")"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"// if (pm.iterationData.get(\"method\") === \"PUT\") {\r",
+									"//     pm.request.method = 'PUT';\r",
+									"// } else {\r",
+									"//     pm.request.method = 'POST';\r",
+									"// }\r",
+									"function generatePhoneNumber() {\r",
+									"    const areaCode = Math.floor(100 + Math.random() * 900); // Random area code (100-999)\r",
+									"    const prefix = Math.floor(100 + Math.random() * 900);   // Random prefix (100-999)\r",
+									"    const lineNumber = Math.floor(1000 + Math.random() * 9000); // Random line number (1000-9999)\r",
+									"    return `(${areaCode})${prefix}-${lineNumber}`;\r",
+									"}\r",
+									"\r",
+									"// Store the generated phone number in an environment variable\r",
+									"//pm.environment.set(\"uniquePhoneNumber\", generatePhoneNumber());"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "userapi@nn",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "Numpy@gmail.com",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n   \r\n    \"user_first_name\": \"krishtina\",\r\n    \"user_last_name\": \"giden\",\r\n    \"user_contact_number\": \"1234567894\",\r\n    \"user_email_id\": \"krishtii.doe@example.com\",\r\n     \"userAddress\": {  \r\n    \"PlotNumber\": \"101\",\r\n    \"Street\": \"Main Street\",\r\n    \"state\": \"CA\",\r\n    \"Country\": \"USA\",\r\n    \"zipCode\": \"90001\"\r\n  }\r\n }\r\n// {\r\n//     \"user_first_name\": \"jow\",\r\n//     \"user_last_name\": \"Doe\",\r\n//     \"user_contact_number\": \"1034569890\",\r\n//     \"user_email_id\": \"jon.do@example.com\",\r\n//     \"userAddress\": {\r\n//       \"PlotNumber\": \"101\",\r\n//       \"Street\": \"Main Street\",\r\n//       \"state\": \"CA\",\r\n//       \"Country\": \"USA\",\r\n//       \"zipCode\": \"90001\"\r\n//     }\r\n//   }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/createusers",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"createusers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateUserWith_invalidID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"  //   pm.expect(statusCode === 200 || statusCode === 201).to.be.true;\r",
+									"});\r",
+									"\r",
+									"// Validate the response JSON schema\r",
+									"pm.test(\"Response should be valid JSON\", function () {\r",
+									"    pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"\r",
+									"\r",
+									"//PostmanLegacy.setNextRequest(\"deleteUserByName\")"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "userapi@nn",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "Numpy@gmail.com",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n   \r\n    \"user_first_name\": \"krishtina\",\r\n    \"user_last_name\": \"giden\",\r\n    \"user_contact_number\": \"1234567894\",\r\n    \"user_email_id\": \"krishtii.doe@example.com\",\r\n     \"userAddress\": {  \r\n    \"PlotNumber\": \"101\",\r\n    \"Street\": \"Main Street\",\r\n    \"state\": \"CA\",\r\n    \"Country\": \"USA\",\r\n    \"zipCode\": \"90001\"\r\n  }\r\n }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/updateuser/{{invlid_userId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"updateuser",
+								"{{invlid_userId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateUserWithInvalidFirstName",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"  //   pm.expect(statusCode === 200 || statusCode === 201).to.be.true;\r",
+									"});\r",
+									"\r",
+									"// Validate the response JSON schema\r",
+									"pm.test(\"Response should be valid JSON\", function () {\r",
+									"    pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"\r",
+									"\r",
+									"//PostmanLegacy.setNextRequest(\"deleteUserByName\")"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "userapi@nn",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "Numpy@gmail.com",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user_first_name\": \"12@@Andrea\",\r\n    \"user_last_name\": \"Doe\",\r\n    \"user_contact_number\": \"1034569800\",\r\n    \"user_email_id\": \"jo.do@example.com\",\r\n    \"userAddress\": {\r\n      \"PlotNumber\": \"101\",\r\n      \"Street\": \"Main Street\",\r\n      \"state\": \"CA\",\r\n      \"Country\": \"USA\",\r\n      \"zipCode\": \"90001\"\r\n    }\r\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/updateuser/{{User_ID}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"updateuser",
+								"{{User_ID}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateUserWithInvalid_LastName",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"  //   pm.expect(statusCode === 200 || statusCode === 201).to.be.true;\r",
+									"});\r",
+									"\r",
+									"// Validate the response JSON schema\r",
+									"pm.test(\"Response should be valid JSON\", function () {\r",
+									"    pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"\r",
+									"\r",
+									"//PostmanLegacy.setNextRequest(\"deleteUserByName\")"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "userapi@nn",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "Numpy@gmail.com",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user_first_name\": \"Andrea\",\r\n    \"user_last_name\": \"123_Doe\",\r\n    \"user_contact_number\": \"1034569800\",\r\n    \"user_email_id\": \"jo.do@example.com\",\r\n    \"userAddress\": {\r\n      \"PlotNumber\": \"101\",\r\n      \"Street\": \"Main Street\",\r\n      \"state\": \"CA\",\r\n      \"Country\": \"USA\",\r\n      \"zipCode\": \"90001\"\r\n    }\r\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/updateuser/{{User_ID}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"updateuser",
+								"{{User_ID}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateUserWithInvalid_ContcatNumber_Min-1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"  //   pm.expect(statusCode === 200 || statusCode === 201).to.be.true;\r",
+									"});\r",
+									"\r",
+									"// Validate the response JSON schema\r",
+									"pm.test(\"Response should be valid JSON\", function () {\r",
+									"    pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"\r",
+									"\r",
+									"//PostmanLegacy.setNextRequest(\"deleteUserByName\")"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "userapi@nn",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "Numpy@gmail.com",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user_first_name\": \"Andrea\",\r\n    \"user_last_name\": \"gidden\",\r\n    \"user_contact_number\": \"103456980\",\r\n    \"user_email_id\": \"jo.do@example.com\",\r\n    \"userAddress\": {\r\n      \"PlotNumber\": \"101\",\r\n      \"Street\": \"Main Street\",\r\n      \"state\": \"CA\",\r\n      \"Country\": \"USA\",\r\n      \"zipCode\": \"90001\"\r\n    }\r\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/updateuser/{{User_ID}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"updateuser",
+								"{{User_ID}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateUserWithInvalid_ContcatNumber_Max+1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"  //   pm.expect(statusCode === 200 || statusCode === 201).to.be.true;\r",
+									"});\r",
+									"\r",
+									"// Validate the response JSON schema\r",
+									"pm.test(\"Response should be valid JSON\", function () {\r",
+									"    pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"\r",
+									"\r",
+									"//PostmanLegacy.setNextRequest(\"deleteUserByName\")"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "userapi@nn",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "Numpy@gmail.com",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user_first_name\": \"Andrea\",\r\n    \"user_last_name\": \"gidden\",\r\n    \"user_contact_number\": \"10345698001\",\r\n    \"user_email_id\": \"jo.do@example.com\",\r\n    \"userAddress\": {\r\n      \"PlotNumber\": \"101\",\r\n      \"Street\": \"Main Street\",\r\n      \"state\": \"CA\",\r\n      \"Country\": \"USA\",\r\n      \"zipCode\": \"90001\"\r\n    }\r\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/updateuser/{{User_ID}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"updateuser",
+								"{{User_ID}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateUserWithInvalid_Email_ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"  //   pm.expect(statusCode === 200 || statusCode === 201).to.be.true;\r",
+									"});\r",
+									"\r",
+									"// Validate the response JSON schema\r",
+									"pm.test(\"Response should be valid JSON\", function () {\r",
+									"    pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"\r",
+									"\r",
+									"//PostmanLegacy.setNextRequest(\"deleteUserByName\")"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "userapi@nn",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "Numpy@gmail.com",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user_first_name\": \"Andrea\",\r\n    \"user_last_name\": \"gidden\",\r\n    \"user_contact_number\": \"1034569800\",\r\n    \"user_email_id\": \"jo.do_example.c\",\r\n    \"userAddress\": {\r\n      \"PlotNumber\": \"101\",\r\n      \"Street\": \"Main Street\",\r\n      \"state\": \"CA\",\r\n      \"Country\": \"USA\",\r\n      \"zipCode\": \"90001\"\r\n    }\r\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/updateuser/{{User_ID}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"updateuser",
+								"{{User_ID}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateUser_MissingFirstName",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"  //   pm.expect(statusCode === 200 || statusCode === 201).to.be.true;\r",
+									"});\r",
+									"\r",
+									"// Validate the response JSON schema\r",
+									"pm.test(\"Response should be valid JSON\", function () {\r",
+									"    pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"\r",
+									"\r",
+									"//PostmanLegacy.setNextRequest(\"deleteUserByName\")"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "userapi@nn",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "Numpy@gmail.com",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n   \r\n   // \"user_first_name\": \"krishtina\",\r\n    \"user_last_name\": \"giden\",\r\n    \"user_contact_number\": \"1234567894\",\r\n    \"user_email_id\": \"krishtii.doe@example.com\",\r\n     \"userAddress\": {  \r\n    \"plotNumber\": \"B-21\",\r\n    \"street\": \"Main Street\",\r\n    \"state\": \"CA\",\r\n    \"country\": \"USA\",\r\n    \"zipCode\": \"90001\"\r\n  }\r\n }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/updateuser/{{User_ID}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"updateuser",
+								"{{User_ID}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateUser_MissingLastName",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"  //   pm.expect(statusCode === 200 || statusCode === 201).to.be.true;\r",
+									"});\r",
+									"\r",
+									"// Validate the response JSON schema\r",
+									"pm.test(\"Response should be valid JSON\", function () {\r",
+									"    pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"\r",
+									"\r",
+									"//PostmanLegacy.setNextRequest(\"deleteUserByName\")"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "userapi@nn",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "Numpy@gmail.com",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n   \r\n    \"user_first_name\": \"krishtina\",\r\n   // \"user_last_name\": \"giden\",\r\n    \"user_contact_number\": \"1234567894\",\r\n    \"user_email_id\": \"krishtii.doe@example.com\",\r\n     \"userAddress\": {  \r\n    \"plotNumber\": \"B-21\",\r\n    \"street\": \"Main Street\",\r\n    \"state\": \"CA\",\r\n    \"country\": \"USA\",\r\n    \"zipCode\": \"90001\"\r\n  }\r\n }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/updateuser/{{User_ID}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"updateuser",
+								"{{User_ID}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateUser_MissingContactNumber",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"  //   pm.expect(statusCode === 200 || statusCode === 201).to.be.true;\r",
+									"});\r",
+									"\r",
+									"// Validate the response JSON schema\r",
+									"pm.test(\"Response should be valid JSON\", function () {\r",
+									"    pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"\r",
+									"\r",
+									"//PostmanLegacy.setNextRequest(\"deleteUserByName\")"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "userapi@nn",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "Numpy@gmail.com",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n   \r\n    \"user_first_name\": \"krishtina\",\r\n    \"user_last_name\": \"giden\",\r\n  //  \"user_contact_number\": \"1234567894\",\r\n    \"user_email_id\": \"krishtii.doe@example.com\",\r\n     \"userAddress\": {  \r\n    \"plotNumber\": \"B-21\",\r\n    \"street\": \"Main Street\",\r\n    \"state\": \"CA\",\r\n    \"country\": \"USA\",\r\n    \"zipCode\": \"90001\"\r\n  }\r\n }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/updateuser/{{User_ID}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"updateuser",
+								"{{User_ID}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateUser_MissingEmailID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"  //   pm.expect(statusCode === 200 || statusCode === 201).to.be.true;\r",
+									"});\r",
+									"\r",
+									"// Validate the response JSON schema\r",
+									"pm.test(\"Response should be valid JSON\", function () {\r",
+									"    pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"\r",
+									"\r",
+									"//PostmanLegacy.setNextRequest(\"deleteUserByName\")"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "userapi@nn",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "Numpy@gmail.com",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n   \r\n    \"user_first_name\": \"krishtina\",\r\n    \"user_last_name\": \"giden\",\r\n    \"user_contact_number\": \"1234567894\",\r\n   // \"user_email_id\": \"krishtii.doe@example.com\",\r\n     \"userAddress\": {  \r\n    \"plotNumber\": \"B-21\",\r\n    \"street\": \"Main Street\",\r\n    \"state\": \"CA\",\r\n    \"country\": \"USA\",\r\n    \"zipCode\": \"90001\"\r\n  }\r\n }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/updateuser/{{User_ID}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"updateuser",
+								"{{User_ID}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateUser_WithoutMandatoryFields",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"  //   pm.expect(statusCode === 200 || statusCode === 201).to.be.true;\r",
+									"});\r",
+									"\r",
+									"// Validate the response JSON schema\r",
+									"pm.test(\"Response should be valid JSON\", function () {\r",
+									"    pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"\r",
+									"\r",
+									"//PostmanLegacy.setNextRequest(\"deleteUserByName\")"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "userapi@nn",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "Numpy@gmail.com",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n   \r\n//     \"user_first_name\": \"krishtina\",\r\n//     \"user_last_name\": \"giden\",\r\n//     \"user_contact_number\": \"1234567894\",\r\n//    // \"user_email_id\": \"krishtii.doe@example.com\",\r\n     \"userAddress\": {  \r\n    \"plotNumber\": \"B-21\",\r\n    \"street\": \"Main Street\",\r\n    \"state\": \"CA\",\r\n    \"country\": \"USA\",\r\n    \"zipCode\": \"90001\"\r\n  }\r\n }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/updateuser/{{User_ID}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"updateuser",
+								"{{User_ID}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateUserWith_invalidaEndPoint",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"  //   pm.expect(statusCode === 200 || statusCode === 201).to.be.true;\r",
+									"});\r",
+									"\r",
+									"// Validate the response JSON schema\r",
+									"pm.test(\"Response should be valid JSON\", function () {\r",
+									"    pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"\r",
+									"\r",
+									"//PostmanLegacy.setNextRequest(\"deleteUserByName\")"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "userapi@nn",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "Numpy@gmail.com",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n   \r\n    \"user_first_name\": \"krishtina\",\r\n    \"user_last_name\": \"giden\",\r\n    \"user_contact_number\": \"1234567894\",\r\n    \"user_email_id\": \"krishtii.doe@example.com\",\r\n     \"userAddress\": {  \r\n    \"plotNumber\": \"B-21\",\r\n    \"street\": \"Main Street\",\r\n    \"state\": \"CA\",\r\n    \"country\": \"USA\",\r\n    \"zipCode\": \"90001\"\r\n  }\r\n }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}{{invalidenpoint}}",
+							"host": [
+								"{{baseUrl}}{{invalidenpoint}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateUserWith_Invalid_Content-Type",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"  //   pm.expect(statusCode === 200 || statusCode === 201).to.be.true;\r",
+									"});\r",
+									"\r",
+									"// Validate the response JSON schema\r",
+									"pm.test(\"Response should be valid JSON\", function () {\r",
+									"    pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"\r",
+									"\r",
+									"//PostmanLegacy.setNextRequest(\"deleteUserByName\")"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "userapi@nn",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "Numpy@gmail.com",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n   \r\n    \"user_first_name\": \"krishtina\",\r\n    \"user_last_name\": \"giden\",\r\n    \"user_contact_number\": \"1234567894\",\r\n    \"user_email_id\": \"krishtii.doe@example.com\",\r\n     \"userAddress\": {  \r\n    \"plotNumber\": \"B-21\",\r\n    \"street\": \"Main Street\",\r\n    \"state\": \"CA\",\r\n    \"country\": \"USA\",\r\n    \"zipCode\": \"90001\"\r\n  }\r\n }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/updateuser/{{User_ID}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"updateuser",
+								"{{User_ID}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete_NonExisting User FirstName",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// pm.environment.unset(\"userFirst_Name\")\r",
+									"// pm.environment.unset(\"User_ID\")"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "userapi@nn",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "Numpy@gmail.com",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/deleteuser/username/{{inavailidFirstname}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"deleteuser",
+								"username",
+								"{{inavailidFirstname}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete Non existing UserID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// pm.environment.unset(\"userFirst_Name\")\r",
+									"// pm.environment.unset(\"User_ID\")"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "userapi@nn",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "Numpy@gmail.com",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/deleteuser/{{invlid_userId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"deleteuser",
+								"{{invlid_userId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteUserBy name- Method Not Allowed",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// pm.environment.unset(\"userFirst_Name\")\r",
+									"// pm.environment.unset(\"User_ID\")"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "userapi@nn",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "Numpy@gmail.com",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/deleteuser/{{invlid_userId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"deleteuser",
+								"{{invlid_userId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteUserBy name- Invalid End Point",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// pm.environment.unset(\"userFirst_Name\")\r",
+									"// pm.environment.unset(\"User_ID\")"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "userapi@nn",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "Numpy@gmail.com",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/createusers/{{User_ID}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"createusers",
+								"{{User_ID}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "password",
+				"value": "userapi@nn",
+				"type": "string"
+			},
+			{
+				"key": "username",
+				"value": "Numpy@gmail.com",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					"// Initialize requestData if it doesn't exist\r",
+					"if (typeof pm.variables.get('requestData') !== 'object') {\r",
+					"    pm.variables.set('requestData', pm.iterationData.toObject());\r",
+					"}\r",
+					"\r",
+					"const requestData = pm.variables.get('requestData');\r",
+					"\r",
+					"// Check if requestData is valid\r",
+					"if (typeof requestData !== 'object' || Object.keys(requestData).length === 0) {\r",
+					"    console.log('No external data provided or object is empty');\r",
+					"    return;\r",
+					"}\r",
+					"\r",
+					"// Find the current request based on its name\r",
+					"const currentRequest = requestData.requests.find(({ name }) => name === pm.info.requestName);\r",
+					"\r",
+					"// Skip the rest if no data for the current request\r",
+					"if (!currentRequest) {\r",
+					"    console.log(`Requests ${pm.info.requestName} has no data defined`);\r",
+					"    return;\r",
+					"}\r",
+					"\r",
+					"// Expose variables from the current request data\r",
+					"const variables = currentRequest.data.shift();\r",
+					"\r",
+					"for (const [key, value] of Object.entries(variables)) {\r",
+					"    pm.variables.set(key, value);\r",
+					"}\r",
+					"\r",
+					"// Update requestData in the variable store\r",
+					"pm.variables.set('requestData', requestData);\r",
+					"\r",
+					"// Decide where to go next\r",
+					"if (currentRequest.data.length > 0) {\r",
+					"    postman.setNextRequest(pm.info.requestName);\r",
+					"}\r",
+					"\r",
+					"\r",
+					"\r",
+					"\r",
+					"\r",
+					"\r",
+					"\r",
+					"\r",
+					"\r",
+					"\r",
+					"\r",
+					"\r",
+					"\r",
+					"\r",
+					"\r",
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					"// pm.test(\"Status code is 200\", function () {\r",
+					"//     pm.response.to.have.status(200);\r",
+					"// });\r",
+					"\r",
+					"// // Validate the response JSON schema\r",
+					"// pm.test(\"Response should be valid JSON\", function () {\r",
+					"//     pm.response.to.be.json;\r",
+					"// });\r",
+					"\r",
+					"// // Validate a specific field in the response\r",
+					"// pm.test(\"User first name is correct\", function () {\r",
+					"//     var jsonData = pm.response.json();\r",
+					"//     //pm.expect(jsonData.user_first_name).to.eql(\"John\");\r",
+					"// });"
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseurl",
+			"value": "https://userserviceapp-f5a54828541b.herokuapp.com/uap"
+		},
+		{
+			"key": "userName",
+			"value": ""
+		},
+		{
+			"key": "userID",
+			"value": ""
+		}
+	]
+}
