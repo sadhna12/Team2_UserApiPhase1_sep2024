@@ -274,7 +274,8 @@
 									"\r",
 									"});\r",
 									"\r",
-									"const response = pm.response.json();\r",
+									"\r",
+									"\r",
 									"\r",
 									"// pm.test(\"Body structure is correct\", function () {\r",
 									"   \r",
@@ -513,6 +514,33 @@
 									"    pm.response.to.be.json;\r",
 									"});\r",
 									"\r",
+									"pm.test(\"Body structure is correct\", function () \r",
+									"{\r",
+									"   \r",
+									"   var response = pm.response.json();\r",
+									"\r",
+									"    // Check that response is an object\r",
+									"    pm.expect(response).to.be.an('object');\r",
+									"\r",
+									"    // Check for properties\r",
+									"    pm.expect(response).to.have.property('user_id');\r",
+									"    pm.expect(response).to.have.property('user_first_name');\r",
+									"    pm.expect(response).to.have.property('user_last_name');\r",
+									"    pm.expect(response).to.have.property('user_contact_number');\r",
+									"    pm.expect(response).to.have.property('user_email_id');\r",
+									"    pm.expect(response).to.have.property('creation_time');\r",
+									"    pm.expect(response).to.have.property('last_mod_time');\r",
+									"    pm.expect(response).to.have.property('userAddress');\r",
+									"\r",
+									"    // Check properties of userAddress\r",
+									"    pm.expect(response.userAddress).to.have.property('addressId');\r",
+									"    pm.expect(response.userAddress).to.have.property('plotNumber');\r",
+									"    pm.expect(response.userAddress).to.have.property('street');\r",
+									"    pm.expect(response.userAddress).to.have.property('state');\r",
+									"    pm.expect(response.userAddress).to.have.property('country');\r",
+									"    pm.expect(response.userAddress).to.have.property('zipCode');\r",
+									"});\r",
+									"\r",
 									"// pm.test(\"Validate response schema\", function() {\r",
 									"//     const responseJson = pm.response.json(); // Get the parsed JSON response\r",
 									"//     const validateSchema = pm.globals.get(\"validateSchema\"); // Retrieve the function\r",
@@ -699,6 +727,7 @@
 									"\r",
 									"\r",
 									"const jsondata=pm.response.json();\r",
+									"console.log(\"checkimg reponse type     \",jsondata)\r",
 									"\r",
 									"pm.test(\"validate data type in response\",()=>\r",
 									"{\r",
@@ -759,10 +788,144 @@
 									"              \"type\": \"integer\"\r",
 									"            },\r",
 									"            \"plotNumber\": {\r",
+									"              \"type\": \"string\"\r",
+									"            },\r",
+									"            \"street\": {\r",
+									"              \"type\": \"string\"\r",
+									"            },\r",
+									"            \"state\": {\r",
+									"              \"type\": \"string\"\r",
+									"            },\r",
+									"            \"country\": {\r",
+									"              \"type\": \"string\"\r",
+									"            },\r",
+									"            \"zipCode\": {\r",
+									"              \"type\": \"integer\"\r",
+									"            }\r",
+									"          },\r",
+									"          \"required\": [\r",
+									"            \"addressId\",\r",
+									"            \"plotNumber\",\r",
+									"            \"street\",\r",
+									"            \"state\",\r",
+									"            \"country\",\r",
+									"            \"zipCode\"\r",
+									"          ]\r",
+									"        },\r",
+									"        \"user_id\": {\r",
+									"          \"type\": \"integer\"\r",
+									"        },\r",
+									"        \"user_first_name\": {\r",
+									"          \"type\": \"string\"\r",
+									"        },\r",
+									"        \"user_last_name\": {\r",
+									"          \"type\": \"string\"\r",
+									"        },\r",
+									"        \"user_contact_number\": {\r",
+									"          \"type\": \"integer\"\r",
+									"        },\r",
+									"        \"user_email_id\": {\r",
+									"          \"type\": \"string\"\r",
+									"        },\r",
+									"        \"creation_time\": {\r",
+									"          \"type\": \"string\"\r",
+									"        },\r",
+									"        \"last_mod_time\": {\r",
+									"          \"type\": \"string\"\r",
+									"        }\r",
+									"      },\r",
+									"      \"required\": [\r",
+									"        \"userAddress\",\r",
+									"        \"user_id\",\r",
+									"        \"user_first_name\",\r",
+									"        \"user_last_name\",\r",
+									"        \"user_contact_number\",\r",
+									"        \"user_email_id\",\r",
+									"        \"creation_time\",\r",
+									"        \"last_mod_time\"\r",
+									"      ]\r",
+									"    },\r",
+									"    {\r",
+									"      \"type\": \"object\",\r",
+									"      \"properties\": {\r",
+									"        \"userAddress\": {\r",
+									"          \"type\": \"object\",\r",
+									"          \"properties\": {\r",
+									"            \"addressId\": {\r",
+									"              \"type\": \"integer\"\r",
+									"            },\r",
+									"            \"plotNumber\": {\r",
+									"              \"type\": \"string\"\r",
+									"            },\r",
+									"            \"street\": {\r",
+									"              \"type\": \"string\"\r",
+									"            },\r",
+									"            \"state\": {\r",
+									"              \"type\": \"string\"\r",
+									"            },\r",
+									"            \"country\": {\r",
+									"              \"type\": \"string\"\r",
+									"            },\r",
+									"            \"zipCode\": {\r",
+									"              \"type\": \"integer\"\r",
+									"            }\r",
+									"          },\r",
+									"          \"required\": [\r",
+									"            \"addressId\",\r",
+									"            \"plotNumber\",\r",
+									"            \"street\",\r",
+									"            \"state\",\r",
+									"            \"country\",\r",
+									"            \"zipCode\"\r",
+									"          ]\r",
+									"        },\r",
+									"        \"user_id\": {\r",
+									"          \"type\": \"integer\"\r",
+									"        },\r",
+									"        \"user_first_name\": {\r",
+									"          \"type\": \"string\"\r",
+									"        },\r",
+									"        \"user_last_name\": {\r",
+									"          \"type\": \"string\"\r",
+									"        },\r",
+									"        \"user_contact_number\": {\r",
+									"          \"type\": \"integer\"\r",
+									"        },\r",
+									"        \"user_email_id\": {\r",
+									"          \"type\": \"string\"\r",
+									"        },\r",
+									"        \"creation_time\": {\r",
+									"          \"type\": \"string\"\r",
+									"        },\r",
+									"        \"last_mod_time\": {\r",
+									"          \"type\": \"string\"\r",
+									"        }\r",
+									"      },\r",
+									"      \"required\": [\r",
+									"        \"userAddress\",\r",
+									"        \"user_id\",\r",
+									"        \"user_first_name\",\r",
+									"        \"user_last_name\",\r",
+									"        \"user_contact_number\",\r",
+									"        \"user_email_id\",\r",
+									"        \"creation_time\",\r",
+									"        \"last_mod_time\"\r",
+									"      ]\r",
+									"    },\r",
+									"    {\r",
+									"      \"type\": \"object\",\r",
+									"      \"properties\": {\r",
+									"        \"userAddress\": {\r",
+									"          \"type\": \"object\",\r",
+									"          \"properties\": {\r",
+									"            \"addressId\": {\r",
+									"              \"type\": \"integer\"\r",
+									"            },\r",
+									"            \"plotNumber\": {\r",
 									"              \"type\": \"null\"\r",
 									"            },\r",
 									"            \"street\": {\r",
-									"              \"type\": \"null\"\r",
+									"              \"type\": \"string\"\r",
 									"            },\r",
 									"            \"state\": {\r",
 									"              \"type\": \"string\"\r",
@@ -1476,8 +1639,8 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
+									"pm.test(\"Status code is 415\", function () {\r",
+									"    pm.response.to.have.status(415);\r",
 									"  //   pm.expect(statusCode === 200 || statusCode === 201).to.be.true;\r",
 									"});\r",
 									"\r",
@@ -1556,8 +1719,8 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(415);\r",
 									"  //   pm.expect(statusCode === 200 || statusCode === 201).to.be.true;\r",
 									"});\r",
 									"\r",
@@ -1631,8 +1794,8 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
+									"pm.test(\"Status code is 409\", function () {\r",
+									"    pm.response.to.have.status(409);\r",
 									"  //   pm.expect(statusCode === 200 || statusCode === 201).to.be.true;\r",
 									"});\r",
 									"\r",
@@ -1706,8 +1869,8 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
+									"pm.test(\"Status code is 409\", function () {\r",
+									"    pm.response.to.have.status(409);\r",
 									"  //   pm.expect(statusCode === 200 || statusCode === 201).to.be.true;\r",
 									"});\r",
 									"\r",
@@ -1781,8 +1944,8 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
 									"  //   pm.expect(statusCode === 200 || statusCode === 201).to.be.true;\r",
 									"});\r",
 									"\r",
@@ -1856,8 +2019,8 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
 									"  //   pm.expect(statusCode === 200 || statusCode === 201).to.be.true;\r",
 									"});\r",
 									"\r",
@@ -1931,8 +2094,8 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
 									"  //   pm.expect(statusCode === 200 || statusCode === 201).to.be.true;\r",
 									"});\r",
 									"\r",
@@ -2006,8 +2169,8 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
 									"  //   pm.expect(statusCode === 200 || statusCode === 201).to.be.true;\r",
 									"});\r",
 									"\r",
@@ -2081,8 +2244,8 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
 									"  //   pm.expect(statusCode === 200 || statusCode === 201).to.be.true;\r",
 									"});\r",
 									"\r",
@@ -2130,7 +2293,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"user_first_name\": \"An\",\r\n    \"user_last_name\": \"Doe\",\r\n    \"user_contact_number\": \"103456988\",\r\n    \"user_email_id\": \"An2.do@example.com\",\r\n    \"userAddress\": {\r\n      \"PlotNumber\": \"101@@@@@@\",\r\n      \"Street\": \"Main Street\",\r\n      \"state\": \"CA\",\r\n      \"Country\": \"USA\",\r\n      \"zipCode\": \"12123\"\r\n    }\r\n  }",
+							"raw": "{\r\n    \"user_first_name\": \"An\",\r\n    \"user_last_name\": \"Doe\",\r\n    \"user_contact_number\": \"123456789\",\r\n    \"user_email_id\": \"An7.do@example.com\",\r\n    \"userAddress\": {\r\n      \"PlotNumber\": \"101@@@@@@\",\r\n      \"Street\": \"Main Street\",\r\n      \"state\": \"CA\",\r\n      \"Country\": \"USA\",\r\n      \"zipCode\": \"12123\"\r\n    }\r\n  }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2156,8 +2319,8 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
 									"  //   pm.expect(statusCode === 200 || statusCode === 201).to.be.true;\r",
 									"});\r",
 									"\r",
@@ -2205,7 +2368,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"user_first_name\": \"Anna\",\r\n    \"user_last_name\": \"Doe\",\r\n    \"user_contact_number\": \"12345678901\",\r\n    \"user_email_id\": \"An2.do@example.com\",\r\n    \"userAddress\": {\r\n      \"PlotNumber\": \"101@@@@@@\",\r\n      \"Street\": \"Main Street\",\r\n      \"state\": \"CA\",\r\n      \"Country\": \"USA\",\r\n      \"zipCode\": \"12123\"\r\n    }\r\n  }",
+							"raw": "{\r\n    \"user_first_name\": \"Anna\",\r\n    \"user_last_name\": \"Doe\",\r\n      \"user_email_id\": \"An.do@example.com\",\r\n    \"userAddress\": {\r\n      \"PlotNumber\": \"101@@@@@@\",\r\n      \"Street\": \"Main Street\",\r\n      \"state\": \"CA\",\r\n      \"Country\": \"USA\",\r\n      \"zipCode\": \"12123\"\r\n    }\r\n  }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2280,7 +2443,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"user_first_name\": \"Anni\",\r\n    \"user_last_name\": \"Doe\",\r\n    \"user_contact_number\": \"1284567611\",\r\n    \"user_email_id\": \"An23.do@example.com\",\r\n    \"userAddress\": {\r\n      \"PlotNumber\": \"101@@@@@@\",\r\n      \"Street\": \"Main Street\",\r\n      \"state\": \"CA\",\r\n      \"Country\": 12345,\r\n      \"zipCode\": \"12123\"\r\n    }\r\n  }",
+							"raw": "{\r\n    \"user_first_name\": \"Anni\",\r\n    \"user_last_name\": \"Doe\",\r\n    \"user_contact_number\": \"1284567613\",\r\n    \"user_email_id\": \"An.do@example.com\",\r\n    \"userAddress\": {\r\n      \"PlotNumber\": \"101@@@@@@\",\r\n      \"Street\": \"Main Street\",\r\n      \"state\": \"CA\",\r\n      \"Country\": 12345,\r\n      \"zipCode\": \"12123\"\r\n    }\r\n  }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2307,7 +2470,7 @@
 							"script": {
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
+									"    pm.response.to.have.status(500);\r",
 									"  //   pm.expect(statusCode === 200 || statusCode === 201).to.be.true;\r",
 									"});\r",
 									"\r",
@@ -2355,7 +2518,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    // \"user_first_name\": \"Anni\",\r\n    // \"user_last_name\": \"Doe\",\r\n    // \"user_contact_number\": \"1284567611\",\r\n    // \"user_email_id\": \"An23.do@example.com\",\r\n    // \"userAddress\": {\r\n      \"PlotNumber\": \"101@@@@@@\",\r\n      \"Street\": \"Main Street\",\r\n      \"state\": \"CA\",\r\n      \"Country\": 12345,\r\n      \"zipCode\": \"12123\"\r\n    }\r\n  }",
+							"raw": "{\r\n    // \"user_first_name\": \"Anni\",\r\n    // \"user_last_name\": \"Doe\",\r\n    // \"user_contact_number\": \"1284567611\",\r\n    // \"user_email_id\": \"An23.do@example.com\",\r\n     \"userAddress\": {\r\n      \"PlotNumber\": \"101@@@@@@\",\r\n      \"Street\": \"Main Street\",\r\n      \"state\": \"CA\",\r\n      \"Country\": 12345,\r\n      \"zipCode\": \"12123\"\r\n    }\r\n  }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2381,10 +2544,10 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
-									"  //   pm.expect(statusCode === 200 || statusCode === 201).to.be.true;\r",
-									"});\r",
+									"// pm.test(\"Status code is 200\", function () {\r",
+									"//     pm.response.to.have.status(200);\r",
+									"//   //   pm.expect(statusCode === 200 || statusCode === 201).to.be.true;\r",
+									"// });\r",
 									"\r",
 									"// Validate the response JSON schema\r",
 									"pm.test(\"Response should be valid JSON\", function () {\r",
@@ -2456,8 +2619,8 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
+									"pm.test(\"Status code is 401\", function () {\r",
+									"    pm.response.to.have.status(401);\r",
 									"  //   pm.expect(statusCode === 200 || statusCode === 201).to.be.true;\r",
 									"});\r",
 									"\r",
@@ -2516,9 +2679,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/users/username/Numpy",
+							"raw": "{{baseurl}}/users/username/Numpy",
 							"host": [
-								"{{baseUrl}}"
+								"{{baseurl}}"
 							],
 							"path": [
 								"users",
@@ -2536,8 +2699,8 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
+									"pm.test(\"Status code is 401\", function () {\r",
+									"    pm.response.to.have.status(401);\r",
 									"  //   pm.expect(statusCode === 200 || statusCode === 201).to.be.true;\r",
 									"});\r",
 									"\r",
@@ -2596,9 +2759,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/user/{{userid}}",
+							"raw": "{{baseurl}}/user/{{userid}}",
 							"host": [
-								"{{baseUrl}}"
+								"{{baseurl}}"
 							],
 							"path": [
 								"user",
@@ -2615,8 +2778,8 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
 									"  //   pm.expect(statusCode === 200 || statusCode === 201).to.be.true;\r",
 									"});\r",
 									"\r",
@@ -2675,9 +2838,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/users/username/{{inavailidFirstname}}",
+							"raw": "{{baseurl}}/users/username/{{inavailidFirstname}}",
 							"host": [
-								"{{baseUrl}}"
+								"{{baseurl}}"
 							],
 							"path": [
 								"users",
@@ -2695,8 +2858,8 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
 									"  //   pm.expect(statusCode === 200 || statusCode === 201).to.be.true;\r",
 									"});\r",
 									"\r",
@@ -2755,9 +2918,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/users/username/447",
+							"raw": "{{baseurl}}/users/username/447",
 							"host": [
-								"{{baseUrl}}"
+								"{{baseurl}}"
 							],
 							"path": [
 								"users",
@@ -2775,8 +2938,8 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
 									"  //   pm.expect(statusCode === 200 || statusCode === 201).to.be.true;\r",
 									"});\r",
 									"\r",
@@ -2835,9 +2998,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/users{{invalidenpoint}}",
+							"raw": "{{baseurl}}/users{{invalidenpoint}}",
 							"host": [
-								"{{baseUrl}}"
+								"{{baseurl}}"
 							],
 							"path": [
 								"users{{invalidenpoint}}"
@@ -2853,8 +3016,8 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
+									"pm.test(\"Status code is 405\", function () {\r",
+									"    pm.response.to.have.status(405);\r",
 									"  //   pm.expect(statusCode === 200 || statusCode === 201).to.be.true;\r",
 									"});\r",
 									"\r",
@@ -2910,9 +3073,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/users/username/{{f_name_Numpy}}",
+							"raw": "{{baseurl}}/users/username/{{f_name_Numpy}}",
 							"host": [
-								"{{baseUrl}}"
+								"{{baseurl}}"
 							],
 							"path": [
 								"users",
@@ -2930,8 +3093,8 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
+									"pm.test(\"Status code is 405\", function () {\r",
+									"    pm.response.to.have.status(405);\r",
 									"  //   pm.expect(statusCode === 200 || statusCode === 201).to.be.true;\r",
 									"});\r",
 									"\r",
@@ -2987,9 +3150,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/user/{{userid}}",
+							"raw": "{{baseurl}}/user/{{userid}}",
 							"host": [
-								"{{baseUrl}}"
+								"{{baseurl}}"
 							],
 							"path": [
 								"user",
@@ -3006,8 +3169,8 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
 									"  //   pm.expect(statusCode === 200 || statusCode === 201).to.be.true;\r",
 									"});\r",
 									"\r",
@@ -3066,9 +3229,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/user/{{invlid_userId}}",
+							"raw": "{{baseurl}}/user/{{invlid_userId}}",
 							"host": [
-								"{{baseUrl}}"
+								"{{baseurl}}"
 							],
 							"path": [
 								"user",
@@ -3085,8 +3248,8 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
 									"  //   pm.expect(statusCode === 200 || statusCode === 201).to.be.true;\r",
 									"});\r",
 									"\r",
@@ -3145,9 +3308,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}users{{invalidenpoint}}{{userid}}",
+							"raw": "{{baseurl}}users{{invalidenpoint}}{{userid}}",
 							"host": [
-								"{{baseUrl}}users{{invalidenpoint}}{{userid}}"
+								"{{baseurl}}users{{invalidenpoint}}{{userid}}"
 							]
 						}
 					},
@@ -3312,7 +3475,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": " {\r\n   \r\n    \"user_first_name\": \"krishtina\",\r\n    \"user_last_name\": \"giden\",\r\n    \"user_contact_number\": \"1234567894\",\r\n    \"user_email_id\": \"krishtii.doe@example.com\",\r\n     \"userAddress\": {  \r\n    \"PlotNumber\": \"101\",\r\n    \"Street\": \"Main Street\",\r\n    \"state\": \"CA\",\r\n    \"Country\": \"USA\",\r\n    \"zipCode\": \"90001\"\r\n  }\r\n }\r\n// {\r\n//     \"user_first_name\": \"jow\",\r\n//     \"user_last_name\": \"Doe\",\r\n//     \"user_contact_number\": \"1034569890\",\r\n//     \"user_email_id\": \"jon.do@example.com\",\r\n//     \"userAddress\": {\r\n//       \"PlotNumber\": \"101\",\r\n//       \"Street\": \"Main Street\",\r\n//       \"state\": \"CA\",\r\n//       \"Country\": \"USA\",\r\n//       \"zipCode\": \"90001\"\r\n//     }\r\n//   }",
+							"raw": " {\r\n   \r\n    \"user_first_name\": \"krishtina\",\r\n    \"user_last_name\": \"giden\",\r\n    \"user_contact_number\": \"1934567899\",\r\n    \"user_email_id\": \"krishtii2.doe@example.com\",\r\n     \"userAddress\": {  \r\n    \"PlotNumber\": \"101\",\r\n    \"Street\": \"Main Street\",\r\n    \"state\": \"CA\",\r\n    \"Country\": \"USA\",\r\n    \"zipCode\": \"90001\"\r\n  }\r\n }\r\n// {\r\n//     \"user_first_name\": \"jow\",\r\n//     \"user_last_name\": \"Doe\",\r\n//     \"user_contact_number\": \"1034569890\",\r\n//     \"user_email_id\": \"jon.do@example.com\",\r\n//     \"userAddress\": {\r\n//       \"PlotNumber\": \"101\",\r\n//       \"Street\": \"Main Street\",\r\n//       \"state\": \"CA\",\r\n//       \"Country\": \"USA\",\r\n//       \"zipCode\": \"90001\"\r\n//     }\r\n//   }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -3338,8 +3501,8 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
 									"  //   pm.expect(statusCode === 200 || statusCode === 201).to.be.true;\r",
 									"});\r",
 									"\r",
@@ -3395,9 +3558,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/updateuser/{{invlid_userId}}",
+							"raw": "{{baseurl}}/updateuser/{{invlid_userId}}",
 							"host": [
-								"{{baseUrl}}"
+								"{{baseurl}}"
 							],
 							"path": [
 								"updateuser",
@@ -3414,8 +3577,8 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
 									"  //   pm.expect(statusCode === 200 || statusCode === 201).to.be.true;\r",
 									"});\r",
 									"\r",
@@ -3471,9 +3634,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/updateuser/{{User_ID}}",
+							"raw": "{{baseurl}}/updateuser/{{User_ID}}",
 							"host": [
-								"{{baseUrl}}"
+								"{{baseurl}}"
 							],
 							"path": [
 								"updateuser",
@@ -3490,8 +3653,8 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
 									"  //   pm.expect(statusCode === 200 || statusCode === 201).to.be.true;\r",
 									"});\r",
 									"\r",
@@ -3539,7 +3702,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"user_first_name\": \"Andrea\",\r\n    \"user_last_name\": \"123_Doe\",\r\n    \"user_contact_number\": \"1034569800\",\r\n    \"user_email_id\": \"jo.do@example.com\",\r\n    \"userAddress\": {\r\n      \"PlotNumber\": \"101\",\r\n      \"Street\": \"Main Street\",\r\n      \"state\": \"CA\",\r\n      \"Country\": \"USA\",\r\n      \"zipCode\": \"90001\"\r\n    }\r\n  }",
+							"raw": "{\r\n    \"user_first_name\": \"Andrea\",\r\n    \"user_last_name\": \"123Doe\",\r\n    \"user_contact_number\": \"1034569801\",\r\n    \"user_email_id\": \"jo.do@example.com\",\r\n    \"userAddress\": {\r\n      \"PlotNumber\": \"101\",\r\n      \"Street\": \"Main Street\",\r\n      \"state\": \"CA\",\r\n      \"Country\": \"USA\",\r\n      \"zipCode\": \"90001\"\r\n    }\r\n  }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -3547,9 +3710,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/updateuser/{{User_ID}}",
+							"raw": "{{baseurl}}/updateuser/{{User_ID}}",
 							"host": [
-								"{{baseUrl}}"
+								"{{baseurl}}"
 							],
 							"path": [
 								"updateuser",
@@ -3566,8 +3729,8 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
 									"  //   pm.expect(statusCode === 200 || statusCode === 201).to.be.true;\r",
 									"});\r",
 									"\r",
@@ -3623,9 +3786,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/updateuser/{{User_ID}}",
+							"raw": "{{baseurl}}/updateuser/{{User_ID}}",
 							"host": [
-								"{{baseUrl}}"
+								"{{baseurl}}"
 							],
 							"path": [
 								"updateuser",
@@ -3642,8 +3805,8 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
 									"  //   pm.expect(statusCode === 200 || statusCode === 201).to.be.true;\r",
 									"});\r",
 									"\r",
@@ -3699,9 +3862,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/updateuser/{{User_ID}}",
+							"raw": "{{baseurl}}/updateuser/{{User_ID}}",
 							"host": [
-								"{{baseUrl}}"
+								"{{baseurl}}"
 							],
 							"path": [
 								"updateuser",
@@ -3718,8 +3881,8 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
 									"  //   pm.expect(statusCode === 200 || statusCode === 201).to.be.true;\r",
 									"});\r",
 									"\r",
@@ -3775,9 +3938,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/updateuser/{{User_ID}}",
+							"raw": "{{baseurl}}/updateuser/{{User_ID}}",
 							"host": [
-								"{{baseUrl}}"
+								"{{baseurl}}"
 							],
 							"path": [
 								"updateuser",
@@ -3794,14 +3957,18 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
 									"  //   pm.expect(statusCode === 200 || statusCode === 201).to.be.true;\r",
 									"});\r",
 									"\r",
 									"// Validate the response JSON schema\r",
 									"pm.test(\"Response should be valid JSON\", function () {\r",
 									"    pm.response.to.be.json;\r",
+									"});\r",
+									"pm.test(\"Check message\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message).to.eql(\"User First Name is mandatory and should contains alphabets only\");\r",
 									"});\r",
 									"\r",
 									"\r",
@@ -3843,7 +4010,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": " {\r\n   \r\n   // \"user_first_name\": \"krishtina\",\r\n    \"user_last_name\": \"giden\",\r\n    \"user_contact_number\": \"1234567894\",\r\n    \"user_email_id\": \"krishtii.doe@example.com\",\r\n     \"userAddress\": {  \r\n    \"plotNumber\": \"B-21\",\r\n    \"street\": \"Main Street\",\r\n    \"state\": \"CA\",\r\n    \"country\": \"USA\",\r\n    \"zipCode\": \"90001\"\r\n  }\r\n }",
+							"raw": " {\r\n   \r\n   // \"user_first_name\": \"krishtina\",\r\n    \"user_last_name\": \"giden\",\r\n    \"user_contact_number\": \"1234567898\",\r\n    \"user_email_id\": \"krishti.doe@example.com\",\r\n     \"userAddress\": {  \r\n    \"plotNumber\": \"B-21\",\r\n    \"street\": \"Main Street\",\r\n    \"state\": \"CA\",\r\n    \"country\": \"USA\",\r\n    \"zipCode\": \"90001\"\r\n  }\r\n }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -3851,9 +4018,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/updateuser/{{User_ID}}",
+							"raw": "{{baseurl}}/updateuser/{{User_ID}}",
 							"host": [
-								"{{baseUrl}}"
+								"{{baseurl}}"
 							],
 							"path": [
 								"updateuser",
@@ -3870,14 +4037,18 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
 									"  //   pm.expect(statusCode === 200 || statusCode === 201).to.be.true;\r",
 									"});\r",
 									"\r",
 									"// Validate the response JSON schema\r",
 									"pm.test(\"Response should be valid JSON\", function () {\r",
 									"    pm.response.to.be.json;\r",
+									"});\r",
+									"pm.test(\"Check message\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message).to.eql(\"User Last Name is mandatory and should contains alphabets only\");\r",
 									"});\r",
 									"\r",
 									"\r",
@@ -3919,7 +4090,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": " {\r\n   \r\n    \"user_first_name\": \"krishtina\",\r\n   // \"user_last_name\": \"giden\",\r\n    \"user_contact_number\": \"1234567894\",\r\n    \"user_email_id\": \"krishtii.doe@example.com\",\r\n     \"userAddress\": {  \r\n    \"plotNumber\": \"B-21\",\r\n    \"street\": \"Main Street\",\r\n    \"state\": \"CA\",\r\n    \"country\": \"USA\",\r\n    \"zipCode\": \"90001\"\r\n  }\r\n }",
+							"raw": " {\r\n   \r\n    \"user_first_name\": \"krishtina\",\r\n   // \"user_last_name\": \"giden\",\r\n    \"user_contact_number\": \"1234467897\",\r\n    \"user_email_id\": \"krishtii.doe@example.com\",\r\n     \"userAddress\": {  \r\n    \"plotNumber\": \"B-21\",\r\n    \"street\": \"Main Street\",\r\n    \"state\": \"CA\",\r\n    \"country\": \"USA\",\r\n    \"zipCode\": \"90001\"\r\n  }\r\n }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -3927,9 +4098,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/updateuser/{{User_ID}}",
+							"raw": "{{baseurl}}/updateuser/{{User_ID}}",
 							"host": [
-								"{{baseUrl}}"
+								"{{baseurl}}"
 							],
 							"path": [
 								"updateuser",
@@ -3946,14 +4117,19 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
 									"  //   pm.expect(statusCode === 200 || statusCode === 201).to.be.true;\r",
 									"});\r",
 									"\r",
 									"// Validate the response JSON schema\r",
 									"pm.test(\"Response should be valid JSON\", function () {\r",
 									"    pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check message\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message).to.eql(\"Phone Number is required and should contains 10 numeric values only\");\r",
 									"});\r",
 									"\r",
 									"\r",
@@ -4003,9 +4179,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/updateuser/{{User_ID}}",
+							"raw": "{{baseurl}}/updateuser/{{User_ID}}",
 							"host": [
-								"{{baseUrl}}"
+								"{{baseurl}}"
 							],
 							"path": [
 								"updateuser",
@@ -4022,14 +4198,19 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
 									"  //   pm.expect(statusCode === 200 || statusCode === 201).to.be.true;\r",
 									"});\r",
 									"\r",
 									"// Validate the response JSON schema\r",
 									"pm.test(\"Response should be valid JSON\", function () {\r",
 									"    pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check message\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message).to.eql(\"User email Id is required\");\r",
 									"});\r",
 									"\r",
 									"\r",
@@ -4071,7 +4252,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": " {\r\n   \r\n    \"user_first_name\": \"krishtina\",\r\n    \"user_last_name\": \"giden\",\r\n    \"user_contact_number\": \"1234567894\",\r\n   // \"user_email_id\": \"krishtii.doe@example.com\",\r\n     \"userAddress\": {  \r\n    \"plotNumber\": \"B-21\",\r\n    \"street\": \"Main Street\",\r\n    \"state\": \"CA\",\r\n    \"country\": \"USA\",\r\n    \"zipCode\": \"90001\"\r\n  }\r\n }",
+							"raw": " {\r\n   \r\n    \"user_first_name\": \"krishtina\",\r\n    \"user_last_name\": \"giden\",\r\n    \"user_contact_number\": \"1234597896\",\r\n   // \"user_email_id\": \"krishtii.doe@example.com\",\r\n     \"userAddress\": {  \r\n    \"plotNumber\": \"B-21\",\r\n    \"street\": \"Main Street\",\r\n    \"state\": \"CA\",\r\n    \"country\": \"USA\",\r\n    \"zipCode\": \"90001\"\r\n  }\r\n }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -4079,9 +4260,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/updateuser/{{User_ID}}",
+							"raw": "{{baseurl}}/updateuser/{{User_ID}}",
 							"host": [
-								"{{baseUrl}}"
+								"{{baseurl}}"
 							],
 							"path": [
 								"updateuser",
@@ -4098,7 +4279,7 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"pm.test(\"Status code is 200\", function () {\r",
+									"pm.test(\"Status code is 400\", function () {\r",
 									"    pm.response.to.have.status(200);\r",
 									"  //   pm.expect(statusCode === 200 || statusCode === 201).to.be.true;\r",
 									"});\r",
@@ -4107,7 +4288,10 @@
 									"pm.test(\"Response should be valid JSON\", function () {\r",
 									"    pm.response.to.be.json;\r",
 									"});\r",
-									"\r",
+									"pm.test(\"Check message\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message).to.eql(\"User First Name is mandatory and should contains alphabets only\");\r",
+									"});\r",
 									"\r",
 									"\r",
 									"//PostmanLegacy.setNextRequest(\"deleteUserByName\")"
@@ -4155,9 +4339,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/updateuser/{{User_ID}}",
+							"raw": "{{baseurl}}/updateuser/{{User_ID}}",
 							"host": [
-								"{{baseUrl}}"
+								"{{baseurl}}"
 							],
 							"path": [
 								"updateuser",
@@ -4174,8 +4358,8 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
 									"  //   pm.expect(statusCode === 200 || statusCode === 201).to.be.true;\r",
 									"});\r",
 									"\r",
@@ -4183,7 +4367,10 @@
 									"pm.test(\"Response should be valid JSON\", function () {\r",
 									"    pm.response.to.be.json;\r",
 									"});\r",
-									"\r",
+									"pm.test(\"Check message\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message).to.eql(\"Not Found\");\r",
+									"});\r",
 									"\r",
 									"\r",
 									"//PostmanLegacy.setNextRequest(\"deleteUserByName\")"
@@ -4231,9 +4418,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}{{invalidenpoint}}",
+							"raw": "{{baseurl}}{{invalidenpoint}}",
 							"host": [
-								"{{baseUrl}}{{invalidenpoint}}"
+								"{{baseurl}}{{invalidenpoint}}"
 							]
 						}
 					},
@@ -4246,8 +4433,8 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
+									"pm.test(\"Status code is 415\", function () {\r",
+									"    pm.response.to.have.status(415);\r",
 									"  //   pm.expect(statusCode === 200 || statusCode === 201).to.be.true;\r",
 									"});\r",
 									"\r",
@@ -4256,7 +4443,10 @@
 									"    pm.response.to.be.json;\r",
 									"});\r",
 									"\r",
-									"\r",
+									"pm.test(\"Check message\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message).to.eql(\"Unsupported Media Type\");\r",
+									"});\r",
 									"\r",
 									"//PostmanLegacy.setNextRequest(\"deleteUserByName\")"
 								],
@@ -4308,9 +4498,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/updateuser/{{User_ID}}",
+							"raw": "{{baseurl}}/updateuser/{{User_ID}}",
 							"host": [
-								"{{baseUrl}}"
+								"{{baseurl}}"
 							],
 							"path": [
 								"updateuser",
@@ -4328,7 +4518,19 @@
 							"script": {
 								"exec": [
 									"// pm.environment.unset(\"userFirst_Name\")\r",
-									"// pm.environment.unset(\"User_ID\")"
+									"// pm.environment.unset(\"User_ID\")\r",
+									"\r",
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"  //   pm.expect(statusCode === 200 || statusCode === 201).to.be.true;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check message\", function () {\r",
+									"\r",
+									"     var jsonData = pm.response.json();\r",
+									"    var invalidFirstname = pm.environment.get(\"inavailidFirstname\"); \r",
+									"    pm.expect(jsonData.message).to.eql(\"User does not exist with name '\" + invalidFirstname + \"'\");\r",
+									"});"
 								],
 								"type": "text/javascript",
 								"packages": {}
@@ -4373,9 +4575,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/deleteuser/username/{{inavailidFirstname}}",
+							"raw": "{{baseurl}}/deleteuser/username/{{inavailidFirstname}}",
 							"host": [
-								"{{baseUrl}}"
+								"{{baseurl}}"
 							],
 							"path": [
 								"deleteuser",
@@ -4394,7 +4596,21 @@
 							"script": {
 								"exec": [
 									"// pm.environment.unset(\"userFirst_Name\")\r",
-									"// pm.environment.unset(\"User_ID\")"
+									"// pm.environment.unset(\"User_ID\")\r",
+									"\r",
+									"\r",
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"  //   pm.expect(statusCode === 200 || statusCode === 201).to.be.true;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check message\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"  //  console.log(\"User not found with id:\"+pm.environment.get(\"invlid_userId\")\r",
+									"console.log(\"User not found with id: \" + pm.environment.get(\"invlid_userId\"));\r",
+									"\r",
+									"     pm.expect(jsonData.message).to.eql(\"User not found with id: \" + pm.environment.get(\"invlid_userId\"));\r",
+									"});"
 								],
 								"type": "text/javascript",
 								"packages": {}
@@ -4439,9 +4655,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/deleteuser/{{invlid_userId}}",
+							"raw": "{{baseurl}}/deleteuser/{{invlid_userId}}",
 							"host": [
-								"{{baseUrl}}"
+								"{{baseurl}}"
 							],
 							"path": [
 								"deleteuser",
@@ -4580,6 +4796,34 @@
 						}
 					},
 					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							"// pm.test(\"Get error message\", function () {\r",
+							"//     var jsonData = pm.response.json();\r",
+							"//     if (pm.response.code >= 400) {\r",
+							"//         console.log(\"Error Message:\", jsonData.error.message);\r",
+							"//         pm.expect(jsonData.error.message).to.exist; // or any other validation\r",
+							"//     }\r",
+							"// });"
+						]
+					}
 				}
 			]
 		}
